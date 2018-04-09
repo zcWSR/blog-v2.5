@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { CoreStore } from '../core.store';
-import {} from 'mobx';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import { JumbotronStore } from './jumbotron.store';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-jumbotron',
   templateUrl: './jumbotron.component.html',
-  styleUrls: ['./jumbotron.component.scss']
+  styleUrls: ['./jumbotron.component.scss'],
+  providers: [
+    JumbotronStore
+  ]
 })
 export class JumbotronComponent implements OnInit {
 
   constructor(
-    private coreStore: CoreStore
-  ) {
-  }
+    private coreStore: CoreStore,
+    private store: JumbotronStore
+  ) {}
 
   ngOnInit() {
-    // setInterval(() => {
-    //   this.coreStore.changeTime();
-    // }, 1000);
+    this.store.loadBg();
   }
 }

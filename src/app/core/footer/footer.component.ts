@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoreStore } from '../core.store';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private coreStore: CoreStore
+  ) { }
 
   ngOnInit() {
   }

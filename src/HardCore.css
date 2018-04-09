@@ -1504,13 +1504,13 @@
 .grey-text.text-darken-1 {
   color: #757575 !important; }
 
-.grey.darken-2 {
+.grey.darken-2, .jumbotron .jumbotron-background.black {
   background-color: #616161 !important; }
 
 .grey-text.text-darken-2 {
   color: #616161 !important; }
 
-.grey.darken-3, ::selection, .jumbotron .jumbotron-background.black {
+.grey.darken-3, ::selection {
   background-color: #424242 !important; }
 
 .grey-text.text-darken-3 {
@@ -2945,8 +2945,7 @@ header, .header {
     z-index: -50;
     transition: filter, margin, opacity ease-out 1s; }
     .jumbotron .jumbotron-background.blur {
-      filter: blur(5px);
-      margin: -5px; }
+      filter: blur(5px); }
     .jumbotron .jumbotron-background.dark::before {
       content: '';
       position: absolute;

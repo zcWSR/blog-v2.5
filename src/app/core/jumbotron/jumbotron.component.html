@@ -1,8 +1,11 @@
 <div class="jumbotron" *mobxAutorun>
-  <div class="jumbotron-background black vanish"></div>
-  <div class="jumbotron-background dark blur" style="background: url('japari.png') 0 / cover;"></div>
+  <div class="jumbotron-background black" [class.vanish]="store.showBg"></div>
+  <div
+    class="jumbotron-background dark"
+    [class.blur]="store.showBg"
+    [style.background]="store.bgStyle"></div>
   <div class="base-title">
-      <h1 class="title">{{ coreStore.title }}</h1>
+      <h1 class="title">zcWSR</h1>
       <div class="divider"></div>
       <p class="subtitle">靡不有初，鲜克有终</p>
   </div>

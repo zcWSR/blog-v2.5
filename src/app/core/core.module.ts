@@ -5,11 +5,13 @@ import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { FooterComponent } from './footer/footer.component';
 import { CoreStore } from './core.store';
 import { MobxAngularModule } from 'mobx-angular';
+import { JsonpModule } from '@angular/http';
 
 @NgModule({
   imports: [
     CommonModule,
-    MobxAngularModule
+    MobxAngularModule,
+    JsonpModule
   ],
   declarations: [
     HeaderComponent,
