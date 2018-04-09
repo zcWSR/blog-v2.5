@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CoreStore } from './core.store';
 import { MobxAngularModule } from 'mobx-angular';
 import { JsonpModule } from '@angular/http';
+import { PagerComponent } from './pager/pager.component';
 
 @NgModule({
   imports: [
@@ -16,12 +17,14 @@ import { JsonpModule } from '@angular/http';
   declarations: [
     HeaderComponent,
     JumbotronComponent,
-    FooterComponent
+    FooterComponent,
+    PagerComponent
   ],
   exports: [
     HeaderComponent,
     JumbotronComponent,
-    FooterComponent
+    FooterComponent,
+    PagerComponent
   ],
   providers: [
     CoreStore

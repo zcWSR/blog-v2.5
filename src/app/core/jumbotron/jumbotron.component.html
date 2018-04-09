@@ -1,9 +1,13 @@
 <div class="jumbotron" *mobxAutorun>
-  <div class="jumbotron-background black" [class.vanish]="store.showBg"></div>
+  <div
+    class="jumbotron-background front dark"
+    [class.vanish]="store.showBg"
+    [style.backgroundColor]="store.frontBgStyle"
+  ></div>
   <div
     class="jumbotron-background dark"
     [class.blur]="store.showBg"
-    [style.background]="store.bgStyle"></div>
+    [style.background]="store.baseBgStyle"></div>
   <div class="base-title">
       <h1 class="title">zcWSR</h1>
       <div class="divider"></div>

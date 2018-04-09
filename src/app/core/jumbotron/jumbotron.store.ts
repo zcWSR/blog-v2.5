@@ -5,6 +5,8 @@ import { runInAction } from 'mobx';
 import { Jsonp } from "@angular/http";
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable()
 export class JumbotronStore {
   constructor(
@@ -12,7 +14,8 @@ export class JumbotronStore {
     private domSanitizer: DomSanitizer
   ) {}
   @observable showBg = false;
-  @observable bgStyle: any = '';
+  @observable frontBgStyle: any = '';
+  @observable baseBgStyle: any = '';
 
   @action('loadBg')
   loadBg() {
@@ -20,17 +23,18 @@ export class JumbotronStore {
     const bg = new Image();
     bg.onload = () => {
       runInAction(() => {
-        this.bgStyle = this.domSanitizer.bypassSecurityTrustStyle(`url('${bg.src}') center / cover`);
+        this.baseBgStyle = this.domSanitizer.bypassSecurityTrustStyle(`url('${bg.src}') center / cover`);
         this.showBg = true;
       });
     };
 
     this.jsonp
-      .get("http://blog-api.zcwsr.com/imgs?callback=JSONP_CALLBACK")
+      .get(`${environment.blog_api_host}/imgs?callback=JSONP_CALLBACK`)
       .map(res => res.json())
-      .subscribe(({ result }: { result: [number] }) => {
-        const filename = result[Math.floor(Math.random() * result.length)];
-        bg.src = `http://blog-api.zcwsr.com/imgs/${filename}`;
+      .subscribe(({ result }) => {
+        const fileInfo = result[Math.floor(Math.random() * result.length)];
+        this.frontBgStyle = this.domSanitizer.bypassSecurityTrustStyle(`#${fileInfo.color}`);
+        bg.src = `${environment.blog_api_host}/imgs/${fileInfo.name}`;
       });
   }
 }

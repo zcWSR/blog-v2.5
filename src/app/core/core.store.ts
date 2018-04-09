@@ -3,7 +3,7 @@ import { observable, action } from 'mobx-angular';
 
 @Injectable()
 export class CoreStore {
-  @observable title: any = 'aaa';
+  @observable title: any = '';
   
   @action('change Time')
   changeTime() {

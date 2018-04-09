@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  blog_api_host: 'http://blog-api.zcwsr.com'
 };
