@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoreStore } from '../core.store';
+import { AppStore } from '../../app.store';
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +9,7 @@ import { CoreStore } from '../core.store';
 export class FooterComponent implements OnInit {
 
   constructor(
-    private coreStore: CoreStore
+    private appStore: AppStore
   ) { }
 
   ngOnInit() {

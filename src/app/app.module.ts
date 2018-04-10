@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { PostListPageModule } from './post-list-page/post-list-page.module';
+import { AppStore } from './app.store';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,12 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
-    // AppRoutingModule,
+    PostListPageModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AppStore
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

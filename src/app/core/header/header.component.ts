@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoreStore } from '../core.store';
+import { AppStore } from '../../app.store';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +7,8 @@ import { CoreStore } from '../core.store';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
   constructor(
-    private coreStore: CoreStore
+    private appStore: AppStore
   ) {
     
   }

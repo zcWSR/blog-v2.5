@@ -23,7 +23,7 @@ export class JumbotronStore {
     const bg = new Image();
     bg.onload = () => {
       runInAction(() => {
-        this.baseBgStyle = this.domSanitizer.bypassSecurityTrustStyle(`url('${bg.src}') center / cover`);
+        this.baseBgStyle = this.domSanitizer.bypassSecurityTrustStyle(`url('${bg.src}')`);
         this.showBg = true;
       });
     };

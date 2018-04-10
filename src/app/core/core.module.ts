@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
-import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { FooterComponent } from './footer/footer.component';
-import { CoreStore } from './core.store';
 import { MobxAngularModule } from 'mobx-angular';
 import { JsonpModule } from '@angular/http';
 import { PagerComponent } from './pager/pager.component';
+import { DateXPipe } from './date-x.pipe';
+import { MarkdownComponent } from './markdown/markdown.component';
 
 @NgModule({
   imports: [
@@ -16,18 +16,17 @@ import { PagerComponent } from './pager/pager.component';
   ],
   declarations: [
     HeaderComponent,
-    JumbotronComponent,
     FooterComponent,
-    PagerComponent
+    PagerComponent,
+    DateXPipe,
+    MarkdownComponent
   ],
   exports: [
     HeaderComponent,
-    JumbotronComponent,
     FooterComponent,
-    PagerComponent
-  ],
-  providers: [
-    CoreStore
+    PagerComponent,
+    DateXPipe,
+    MarkdownComponent
   ]
 })
 export class CoreModule { }

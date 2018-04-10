@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { CoreStore } from '../core.store';
-import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+
+import { AppStore } from '../../app.store';;
 import { JumbotronStore } from './jumbotron.store';
 
 @Component({
@@ -15,11 +15,12 @@ import { JumbotronStore } from './jumbotron.store';
 export class JumbotronComponent implements OnInit {
 
   constructor(
-    private coreStore: CoreStore,
+    private appStore: AppStore,
     private store: JumbotronStore
   ) {}
 
   ngOnInit() {
     this.store.loadBg();
+    console.log('aaaa');
   }
 }

@@ -7,7 +7,9 @@
   <div
     class="jumbotron-background dark"
     [class.blur]="store.showBg"
-    [style.background]="store.baseBgStyle"></div>
+    [style.backgroundImage]="store.baseBgStyle"
+    [style.backgroundPosition]="store.showBg || 'center'"
+  ></div>
   <div class="base-title">
       <h1 class="title">zcWSR</h1>
       <div class="divider"></div>
