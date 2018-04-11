@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "HardCore.css"
+        "HardCore.css",
+        "github-gist.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

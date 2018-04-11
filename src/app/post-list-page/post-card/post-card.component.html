@@ -24,7 +24,7 @@
           <li>
               <i class="material-icons">content_paste</i>
               <ul>
-                  <li *ngFor="let cat of post.categories"><a routerLink="{{ '/categories/' + cat }}">{{ cat }}</a></li>
+                  <li><a routerLink="{{ '/categories/' + cat }}">{{ post.category }}</a></li>
               </ul>
           </li>
           <li>
