@@ -9,7 +9,7 @@ import { Input } from '@angular/core';
 export class PagerComponent implements OnInit, OnChanges {
   @Input() linkPrefix = '/post-list/page';
   @Input() curPage = 1;
-  @Input() totalCount = 100;
+  @Input() totalCount = 0;
   @Input() pageSize = 5;
   pagerItems: { [key: number]: boolean } = {};
 

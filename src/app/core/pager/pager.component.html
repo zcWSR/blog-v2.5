@@ -1,5 +1,4 @@
-<div *mobxAutorun>
-<div class="pager center" [class.hidden]="!isShowPager()">
+<div class="pager center" [style.display]="isShowPager() ? 'block' : 'none'">
     <div class="pager-item go-prev" [class.disabled]="!canGoPrev()" (click)="goPrev()">
         <a><i class="material-icons">keyboard_arrow_left</i></a>
     </div>
@@ -12,6 +11,4 @@
     <div class="pager-item go-next" [class.disabled]="!canGoNext()" (click)="goNext()">
         <a><i class="material-icons">keyboard_arrow_right</i></a>
     </div>
-</div>
-
 </div>
