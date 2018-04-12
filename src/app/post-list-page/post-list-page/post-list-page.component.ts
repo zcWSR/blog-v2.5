@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { PostListPageStore } from '../post-list-page.store';
 
 @Component({
   selector: 'app-post-list-page',
@@ -8,7 +9,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class PostListPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private store: PostListPageStore
+  ) { }
 
   ngOnInit() {
   }

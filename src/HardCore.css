@@ -2123,6 +2123,9 @@ input[type="submit"]:focus {
 .z-depth-5 {
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3); }
 
+.hidden {
+  display: none; }
+
 .container-full {
   display: block;
   margin: 0 auto !important;
@@ -3800,6 +3803,7 @@ input[type="submit"] {
   .pager .pager-item {
     display: inline-block;
     height: 1.8rem;
+    user-select: none;
     text-align: center;
     line-height: 1.8rem;
     font-size: 1.2rem; }
@@ -3819,15 +3823,10 @@ input[type="submit"] {
       .pager .pager-item a:focus {
         background-size: 400% 200%, 400% 200%, 100% 100%;
         color: #fff; }
-    .pager .pager-item.go-before {
+    .pager .pager-item.go-prev, .pager .pager-item.go-next {
       overflow: hidden;
       vertical-align: bottom; }
-      .pager .pager-item.go-before a i {
-        vertical-align: text-top; }
-    .pager .pager-item.go-after {
-      overflow: hidden;
-      vertical-align: bottom; }
-      .pager .pager-item.go-after a i {
+      .pager .pager-item.go-prev a i, .pager .pager-item.go-next a i {
         vertical-align: text-top; }
     .pager .pager-item[disabled] a, .pager .pager-item.disabled a {
       pointer-events: none;

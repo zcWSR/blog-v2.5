@@ -8,6 +8,7 @@ import { PostListComponent } from './post-list/post-list.component';
 import { PostCardComponent } from './post-card/post-card.component';
 import { PostListPageComponent } from './post-list-page/post-list-page.component';
 import { CoreModule } from '../core/core.module';
+import { PostListPageStore } from './post-list-page.store';
 
 @NgModule({
   imports: [
@@ -16,11 +17,14 @@ import { CoreModule } from '../core/core.module';
     CoreModule,
     PostListPageRoutingModule
   ],
+  providers: [
+    PostListPageStore
+  ],
   declarations: [
     PostCardComponent,
     PostListComponent,
     JumbotronComponent,
-    PostListPageComponent,
+    PostListPageComponent
   ],
   exports: [
     PostListPageComponent

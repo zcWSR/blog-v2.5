@@ -31,8 +31,8 @@ export class JumbotronStore {
     this.jsonp
       .get(`${environment.blog_api_host}/imgs?callback=JSONP_CALLBACK`)
       .map(res => res.json())
-      .subscribe(({ result }) => {
-        const fileInfo = result[Math.floor(Math.random() * result.length)];
+      .subscribe(({ data }) => {
+        const fileInfo = data[Math.floor(Math.random() * data.length)];
         this.frontBgStyle = this.domSanitizer.bypassSecurityTrustStyle(`#${fileInfo.color}`);
         bg.src = `${environment.blog_api_host}/imgs/${fileInfo.name}`;
       });

@@ -21,6 +21,5 @@ export class JumbotronComponent implements OnInit {
 
   ngOnInit() {
     this.store.loadBg();
-    console.log('aaaa');
   }
 }
