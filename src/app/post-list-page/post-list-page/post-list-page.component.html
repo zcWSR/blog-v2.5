@@ -1,18 +1,21 @@
-<app-jumbotron></app-jumbotron>
-<div class="container white-bg">
-  <div class="row">
-    <div class="col s24 m20 l18 push-l3 push-m2 push-s0 cards-container">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s24">
-      <app-pager></app-pager>
-      <!-- <app-pager
-        [curPage]="store.curPage"
-        [totalCount]="store.totalCount"
-        [pageSize]="store.pageSize"
-      ></app-pager> -->
+<div *mobxAutorun>
+  <app-jumbotron *ngIf="store.showJumb"></app-jumbotron>
+  <div class="white-bg">
+    <div class="container main-content">
+      <div class="row post-list">
+        <div class="col s24 m20 l18 push-l3 push-m2 push-s0 cards-container">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <div class="row pager">
+        <div class="col s24" >
+          <app-pager
+            [curPage]="store.curPage"
+            [totalCount]="store.totalCount"
+            [pageSize]="store.pageSize"
+          ></app-pager>
+        </div>
+      </div>
     </div>
   </div>
 </div>

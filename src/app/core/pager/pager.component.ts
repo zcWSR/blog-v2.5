@@ -9,7 +9,7 @@ import { Input } from '@angular/core';
 export class PagerComponent implements OnInit, OnChanges {
   @Input() linkPrefix = '/post-list/page';
   @Input() curPage = 1;
-  @Input() totalCount = 0;
+  @Input() totalCount = 100;
   @Input() pageSize = 5;
   pagerItems: { [key: number]: boolean } = {};
 
@@ -21,7 +21,6 @@ export class PagerComponent implements OnInit, OnChanges {
     const items: { [key: number]: boolean } = {};
     const itemCount = 5;
     const pageCount = Math.ceil(this.totalCount / this.pageSize);
-    console.log(pageCount)
     // 总页数 < item数的时候, 直接全部渲染
     if (pageCount <= itemCount) {
       for (let i = 1; i <= pageCount; i++) {

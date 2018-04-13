@@ -1,17 +1,19 @@
 import 'rxjs/add/operator/map';
 import { Injectable } from "@angular/core";
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { observable, computed, action } from "mobx-angular";
 import { runInAction } from 'mobx';
-import { Jsonp } from "@angular/http";
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { environment } from '../../../environments/environment';
+import { IJsonReturn } from '../../modules/json-return';
+import { IImg } from '../../modules/img';
 
 @Injectable()
 export class JumbotronStore {
   constructor(
-    private jsonp: Jsonp,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private http: HttpClient
   ) {}
   @observable showBg = false;
   @observable frontBgStyle: any = '';
@@ -27,14 +29,15 @@ export class JumbotronStore {
         this.showBg = true;
       });
     };
-
-    this.jsonp
-      .get(`${environment.blog_api_host}/imgs?callback=JSONP_CALLBACK`)
-      .map(res => res.json())
-      .subscribe(({ data }) => {
-        const fileInfo = data[Math.floor(Math.random() * data.length)];
-        this.frontBgStyle = this.domSanitizer.bypassSecurityTrustStyle(`#${fileInfo.color}`);
-        bg.src = `${environment.blog_api_host}/imgs/${fileInfo.name}`;
+    const url = `${environment.api_host}/blog/imgs`;
+    this.http.jsonp(url, 'callback')
+      .subscribe((meta: IJsonReturn<IImg[]>) => {
+        if (meta.ret) {
+          const data = meta.data;
+          const fileInfo = data[Math.floor(Math.random() * data.length)];
+          this.frontBgStyle = this.domSanitizer.bypassSecurityTrustStyle(`#${fileInfo.color}`);
+          bg.src = `${environment.api_host}/blog/imgs/${fileInfo.name}`;
+        }
       });
   }
 }

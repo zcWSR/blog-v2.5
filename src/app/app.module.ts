@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PostListPageModule } from './post-list-page/post-list-page.module';
 import { AppStore } from './app.store';
+import { SmallJumbotronComponent } from './post-page/small-jumbotron/small-jumbotron.component';
+import { PostPageComponent } from './post-page/post-page/post-page.component';
+import { PostPageModule } from './post-page/post-page.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,7 @@ import { AppStore } from './app.store';
     BrowserAnimationsModule,
     CoreModule,
     PostListPageModule,
+    PostPageModule,
     AppRoutingModule
   ],
   providers: [

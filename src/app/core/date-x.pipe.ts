@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
+import * as moment from 'moment';
 
 @Pipe({
   name: "dateX",
@@ -6,9 +7,11 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class DateXPipe implements PipeTransform {
   transform(value: any, args?: any): any {
+    let momentDate;
     let date: Date;
     try {
-      date = new Date(value);
+      momentDate = moment(value);
+      date = momentDate.toDate();
     } catch (error) {
       console.error(error);
       return value;
@@ -30,6 +33,10 @@ export class DateXPipe implements PipeTransform {
     //     return `${year}年 前`;
     // let month = now.getMonth() - date.getMonth();
     // return `${month}个月 前`;
-    return '';
+    if(args && args[0]) {
+      return momentDate.format('YYYY年MM月DD日');
+    } else {
+      return momentDate.format('YYYY年MM月DD日 HH:mm:ss');
+    }
   }
 }

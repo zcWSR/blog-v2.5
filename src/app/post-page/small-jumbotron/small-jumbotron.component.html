@@ -1,0 +1,25 @@
+<div class="jumbotron small" *mobxAutorun>
+    <div class="jumbotron-background grey">
+        <!-- <img [src]="bgUrl" (load)="bgLoadComplete()"> -->
+    </div>
+    <div class="post-title">
+        <h1 class="title">{{ store.post.title }}</h1>
+        <p class="date">{{ store.post.date | dateX }}</p>
+        <div class="info">
+            <ul>
+                <li>
+                    <i class="material-icons">content_paste</i>
+                    <ul>
+                        <li>{{ store.post.category }}</li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="material-icons">label</i>
+                    <ul>
+                        <li *ngFor="let label of store.post.labels">{{ label }}</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

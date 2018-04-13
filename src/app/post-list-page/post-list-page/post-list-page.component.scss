@@ -1,0 +1,11 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  .post-list {
+    flex: 1;
+  }
+  .pager {
+    flex: 0 0 auto;
+    margin-top: 2em;
+  }
+}

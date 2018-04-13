@@ -1,14 +1,20 @@
 <div class="pager center" [style.display]="isShowPager() ? 'block' : 'none'">
-    <div class="pager-item go-prev" [class.disabled]="!canGoPrev()" (click)="goPrev()">
-        <a><i class="material-icons">keyboard_arrow_left</i></a>
+    <div class="pager-item go-prev" [class.disabled]="!canGoPrev()">
+        <a
+            routerLink="{{ getLink(curPage - 1) }}"
+            routerLinkActive="canGoPrev()"
+        ><i class="material-icons">keyboard_arrow_left</i></a>
     </div>
     <div class="pager-item" *ngFor="let pageItem of pagerItems | withKey" [class.selected]="pageItem.value">
-        <!-- <a routerLink="{{ getLink(pageItem.key) }}"> -->
-        <a (click)="goPage(pageItem.key)">
+        <a routerLink="{{ getLink(pageItem.key) }}">
+        <!-- <a (click)="goPage(pageItem.key)"> -->
             {{ pageItem.key }}
         </a>
     </div>
-    <div class="pager-item go-next" [class.disabled]="!canGoNext()" (click)="goNext()">
-        <a><i class="material-icons">keyboard_arrow_right</i></a>
+    <div class="pager-item go-next" [class.disabled]="!canGoNext()">
+        <a
+            routerLink="{{ getLink(curPage + 1) }}"
+            routerLinkActive="canGoNext()"
+        ><i class="material-icons">keyboard_arrow_right</i></a>
     </div>
 </div>

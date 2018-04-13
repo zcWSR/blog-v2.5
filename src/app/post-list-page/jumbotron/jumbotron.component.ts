@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import { AppStore } from '../../app.store';;
 import { JumbotronStore } from './jumbotron.store';
+import { Input } from '@angular/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,7 +14,6 @@ import { JumbotronStore } from './jumbotron.store';
   ]
 })
 export class JumbotronComponent implements OnInit {
-
   constructor(
     private appStore: AppStore,
     private store: JumbotronStore

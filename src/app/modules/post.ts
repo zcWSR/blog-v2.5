@@ -4,4 +4,6 @@ export interface IPost {
   date: string;
   section: string;
   rest: string;
+  category: string;
+  labels: string[];
 }
