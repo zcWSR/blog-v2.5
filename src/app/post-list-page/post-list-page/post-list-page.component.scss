@@ -1,5 +1,6 @@
 .main-content {
   display: flex;
+  min-height: 90vh;
   flex-direction: column;
   .post-list {
     flex: 1;

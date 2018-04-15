@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/map';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { observable, computed, action } from "mobx-angular";
+import { observable, computed, action } from 'mobx-angular';
 import { runInAction } from 'mobx';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -35,8 +35,10 @@ export class JumbotronStore {
         if (meta.ret) {
           const data = meta.data;
           const fileInfo = data[Math.floor(Math.random() * data.length)];
-          this.frontBgStyle = this.domSanitizer.bypassSecurityTrustStyle(`#${fileInfo.color}`);
-          bg.src = `${environment.api_host}/blog/imgs/${fileInfo.name}`;
+          this.frontBgStyle = fileInfo.color;
+          setTimeout(() => {
+            bg.src = `${environment.api_host}/blog/imgs/${fileInfo.name}`;
+          }, 1000);
         }
       });
   }

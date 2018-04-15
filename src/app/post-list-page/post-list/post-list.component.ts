@@ -15,20 +15,15 @@ import { HostBinding } from '@angular/core';
   template: `
   <div [ngStyle]="{ transition: 'opacity .5s ease-in-out', opacity: store.loading ? 0.1 : 1 }">
     <app-post-card  *ngFor="let post of store.postList" [post]="post" ></app-post-card>
+    <h1 [style.marginTop]="'1em'" *ngIf="!store.postList.length">没有文章</h1>
   </div>
   `,
-  styleUrls: ['./post-list.component.scss'],
-  animations: [
-    // enterLeave
-  ],
-  // host: {
-  //   '[@enterLeave]': ''
-  // }
+  styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private store: PostListPageStore,
+    public store: PostListPageStore,
     private http: HttpClient
   ) { }
 

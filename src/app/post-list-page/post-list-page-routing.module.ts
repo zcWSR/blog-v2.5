@@ -13,7 +13,7 @@ const routes: Routes = [
       { path: 'page/:page', component: PostListComponent },
     ]
   }
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

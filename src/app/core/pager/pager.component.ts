@@ -9,8 +9,8 @@ import { Input } from '@angular/core';
 export class PagerComponent implements OnInit, OnChanges {
   @Input() linkPrefix = '/post-list/page';
   @Input() curPage = 1;
-  @Input() totalCount = 100;
-  @Input() pageSize = 5;
+  @Input() totalCount = 0;
+  @Input() pageSize = 1;
   pagerItems: { [key: number]: boolean } = {};
 
   isShowPager() {
@@ -50,21 +50,21 @@ export class PagerComponent implements OnInit, OnChanges {
   }
 
   canGoPrev() {
-    return this.curPage != 1;
+    return this.curPage !== 1;
   }
 
   canGoNext() {
-    return this.curPage != Math.ceil(this.totalCount / this.pageSize);
+    return this.curPage !== Math.ceil(this.totalCount / this.pageSize);
   }
-  
+
   constructor(
     // private store: PagerStore
   ) {}
-  
+
   ngOnInit() {
     this.getPagerItems();
   }
-  
+
   ngOnChanges() {
     this.getPagerItems();
   }
@@ -88,6 +88,4 @@ export class PagerComponent implements OnInit, OnChanges {
     this.getPagerItems();
   }
 
-
-  
 }

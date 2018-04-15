@@ -18,19 +18,19 @@
           <li>
               <i class="material-icons">today</i>
               <ul>
-                  <li>{{ (post.date | dateX) || (post.date | date)  }}</li>
+                  <li>{{ (post.date | dateX) }}</li>
               </ul>
           </li>
           <li>
               <i class="material-icons">content_paste</i>
               <ul>
-                  <li><a routerLink="{{ '/categories/' + cat }}">{{ post.category }}</a></li>
+                  <li><a routerLink="{{ '/category/' + post.category }}">{{ post.category }}</a></li>
               </ul>
           </li>
           <li>
               <i class="material-icons">label</i>
               <ul>
-                  <li *ngFor="let tag of post.labels"><a routerLink="{{ '/tags/' + tag }}">{{ tag }}</a></li>
+                  <li *ngFor="let label of post.labels"><a routerLink="{{ '/label/' + label }}">{{ tag }}</a></li>
               </ul>
           </li>
       </ul>

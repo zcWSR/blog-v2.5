@@ -10,13 +10,18 @@ const routes: Routes = [
     component: PostListPageComponent,
     children: [
       { path: '', component: PostListComponent }
-    ]
+    ],
+    data: { animation: 'root' }
   }, {
     path: 'post/:postId',
-    component: PostPageComponent
+    component: PostPageComponent,
+    data: { animation: 'post' }
+  },
+  {
+    path: 'post-list',
+    component: PostListPageComponent,
+    data: { animation: 'post-list' }
   }
-  // },
-  // { path: 'post-list', component: PostListPageComponent }
 ];
 
 @NgModule({
