@@ -30,7 +30,7 @@
           <li>
               <i class="material-icons">label</i>
               <ul>
-                  <li *ngFor="let label of post.labels"><a routerLink="{{ '/label/' + label }}">{{ tag }}</a></li>
+                  <li *ngFor="let tag of post.labels"><a routerLink="{{ '/label/' + tag }}">{{ tag }}</a></li>
               </ul>
           </li>
       </ul>
