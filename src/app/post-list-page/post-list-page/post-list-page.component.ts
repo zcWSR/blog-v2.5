@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PostListPageStore } from '../post-list-page.store';
 import { ActivatedRoute } from '@angular/router';
+import { AppStore } from '../../app.store';
 
 @Component({
   selector: 'app-post-list-page',
@@ -11,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PostListPageComponent implements OnInit {
 
   constructor(
+    private appStore: AppStore,
     private store: PostListPageStore,
     private route: ActivatedRoute
   ) { }
@@ -19,6 +21,9 @@ export class PostListPageComponent implements OnInit {
     this.route.children[0].params
       .subscribe(params => {
         this.store.curPage = +params.page || 1;
+        if (this.store.curPage !== 1) {
+          this.appStore.isHeaderTransparent = false;
+        }
       });
   }
 

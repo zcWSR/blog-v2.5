@@ -1,11 +1,11 @@
-<div class="jumbotron" *mobxAutorun>
+<div #jumbotron class="jumbotron" *mobxAutorun>
   <div
     class="jumbotron-background front dark"
     [class.vanish]="store.showBg"
     [style.backgroundColor]="store.frontBgStyle"
   ></div>
   <div
-    class="jumbotron-background dark blur"
+    class="jumbotron-background dark"
     [style.backgroundImage]="store.baseBgStyle"
     [style.backgroundPosition]="store.showBg || 'center'"
   ></div>

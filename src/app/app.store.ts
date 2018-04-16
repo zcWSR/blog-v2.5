@@ -4,9 +4,5 @@ import { observable, action } from 'mobx-angular';
 @Injectable()
 export class AppStore {
   @observable title: any = 'zcWSR';
-
-  @action('change Time')
-  changeTime() {
-    this.title = new Date().getMilliseconds();
-  }
+  @observable isHeaderTransparent = true;
 }
