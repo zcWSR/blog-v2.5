@@ -6,3 +6,14 @@
         flex: 1 0 auto;
     }
 }
+
+.index {
+    position: absolute;
+    top: 5rem;
+    right: 1rem;
+
+    &.affix {
+        position: fixed;
+        top: 5rem;
+    }
+}

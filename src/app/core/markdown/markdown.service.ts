@@ -5,7 +5,8 @@ import * as hljs from 'highlight.js';
 
 @Injectable()
 export class MarkdownService {
-  index = {};
+    i = 0;
+    index = [];
     constructor(
     ) {
         Marked.setOptions({
@@ -23,11 +24,12 @@ export class MarkdownService {
 
     getRenderer() {
         let renderer = new Marked.Renderer();
-        // renderer.heading = (text: string, level: number, raw) => {
-        //     let id = `${level}-${this.shareService.uuid(8, 16)}`;
-        //     this.index[id] = {active: false, text: text};
-        //     return `<h${level} class="${id} heading">${text}</h${level}>`;
-        // }
+        renderer.heading = (text: string, level: number) => {
+            const id = `header-${this.i}`;
+            this.index.push({ id, active: false, text });
+            this.i++;
+            return `<h${level} class="${id} heading">${text}</h${level}>`;
+        }
         renderer.code = (code: string, language: string) => {
             // highlight.configure({
             //     classPrefix: language

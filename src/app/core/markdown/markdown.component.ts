@@ -1,26 +1,34 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MarkdownService } from './markdown.service';
+import { AfterViewChecked } from '@angular/core/src/metadata/lifecycle_hooks';
+import { observable, computed } from 'mobx-angular';
 
 @Component({
   selector: 'app-markdown',
-  template: `<div class="markdown-body" [innerHTML]="innerHTML"></div>`,
+  template: `<div *mobxAutorun #ref class="markdown-body" [innerHTML]="innerHTML"></div>`,
   providers: [
     MarkdownService
   ]
 })
 export class MarkdownComponent implements OnInit {
-  _content: string = '';
-  innerHTML = this.domSanitizer.bypassSecurityTrustHtml('');
+  @ViewChild('ref') ref: ElementRef;
+  _content = '';
+  innerHTML: any = '';
   @Input('content')
   get content() {
-      return this._content;
+    return this._content;
   }
-  set content(c: string) {
-      this.innerHTML = this.domSanitizer.bypassSecurityTrustHtml(this.mdService.markdown(c || ''));
-      this._content = c;
+  set content(c) {
+    this._content = c;
+    const content = this.mdService.markdown(c);
+    this.innerHTML = this.domSanitizer.bypassSecurityTrustHtml(content || '');
+    this.onPostNavLoad.emit(this.mdService.index);
   }
+
+  @Output() onPostNavLoad = new EventEmitter<{}>();
+  @Input() withIndex = false;
 
   constructor(
       private mdService: MarkdownService,
@@ -28,5 +36,4 @@ export class MarkdownComponent implements OnInit {
   ) { }
 
   ngOnInit() { }
-
 }

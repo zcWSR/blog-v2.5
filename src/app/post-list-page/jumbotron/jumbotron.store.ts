@@ -1,6 +1,5 @@
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { observable, computed, action } from 'mobx-angular';
 import { runInAction } from 'mobx';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -8,15 +7,15 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
 import { IJsonReturn } from '../../modules/json-return';
 import { IImg } from '../../modules/img';
+import { AppStore } from '../../app.store';
 
 @Injectable()
 export class JumbotronStore {
   constructor(
     private domSanitizer: DomSanitizer,
-    private http: HttpClient
+    private appStore: AppStore
   ) {}
   @observable showBg = false;
-  @observable frontBgStyle: any = '';
   @observable baseBgStyle: any = '';
 
   @action('loadBg')
@@ -29,17 +28,6 @@ export class JumbotronStore {
         this.showBg = true;
       });
     };
-    const url = `${environment.api_host}/blog/imgs`;
-    this.http.jsonp(url, 'callback')
-      .subscribe((meta: IJsonReturn<IImg[]>) => {
-        if (meta.ret) {
-          const data = meta.data;
-          const fileInfo = data[Math.floor(Math.random() * data.length)];
-          this.frontBgStyle = fileInfo.color;
-          setTimeout(() => {
-            bg.src = `${environment.api_host}/blog/imgs/${fileInfo.name}`;
-          }, 1000);
-        }
-      });
+    bg.src = this.appStore.hostBg;
   }
 }

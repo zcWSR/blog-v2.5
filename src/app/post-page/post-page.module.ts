@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { DisqusModule } from 'ngx-disqus';
 import { CoreModule } from '../core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MobxAngularModule } from 'mobx-angular';
@@ -17,7 +18,8 @@ import { PostPageStore } from './post-page.store';
     HttpClientModule,
     HttpClientJsonpModule,
     BrowserAnimationsModule,
-    RouterModule
+    RouterModule,
+    DisqusModule.forRoot('zcwsr')
   ],
   providers: [
     PostPageStore

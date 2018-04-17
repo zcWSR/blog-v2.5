@@ -11,6 +11,7 @@ import { WithKeyPipe } from './with-key.pipe';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToArrayPipe } from './to-array.pipe';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoadingComponent,
     DateXPipe,
     MarkdownComponent,
-    WithKeyPipe
+    WithKeyPipe,
+    ToArrayPipe
   ],
   exports: [
     HeaderComponent,
@@ -37,7 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoadingComponent,
     DateXPipe,
     MarkdownComponent,
-    WithKeyPipe
+    WithKeyPipe,
+    ToArrayPipe
   ]
 })
 export class CoreModule { }

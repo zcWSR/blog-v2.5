@@ -1,21 +1,26 @@
 <header class="fix-top" [class.transparent]="appStore.isHeaderTransparent" *mobxAutorun>
     <div class="logo">
         <img class="hide-on-small" src="avatar.jpg">
-        <a *ngIf="showTitle" routerLink="/" [@showHideTitle]>{{ appStore.title }}</a>
+        <a *ngIf="showTitle" routerLink="/" [@showHideTitle]>{{ appStore.blogName }}</a>
     </div>
     <div class="header-menu hide-on-small">
-        <a class="menu-item" href="#">item1</a>
-        <a class="menu-item" href="#">item2</a>
-        <a class="menu-item" href="#">item3</a>
-        <a class="menu-item" href="#">item4</a>
+        <a
+            class="menu-item"
+            *ngFor="let article of appStore.articles"
+            routerLink="{{ '/article/' + article.route }}"
+        >{{ article.shortName }}</a>
     </div>
     <div class="header-dropdown-menu show-on-small">
         <div #menuBtn class="menu-icon"><i #menuIcon class="material-icons">menu</i></div>
         <div class="menu-container">
-            <a class="menu-item" href="#" *ngIf="showDropdownMenu" [@toggleMenu]>item1</a>
-            <a class="menu-item" href="#" *ngIf="showDropdownMenu" [@toggleMenu]>item2</a>
-            <a class="menu-item" href="#" *ngIf="showDropdownMenu" [@toggleMenu]>item3</a>
-            <a class="menu-item" href="#" *ngIf="showDropdownMenu" [@toggleMenu]>item4</a>
+            <ng-template *ngIf="showDropdownMenu">
+                <a
+                    class="menu-item"
+                    *ngFor="let article of appStore.articles"
+                    routerLink="{{ '/article/' + article.route }}"
+                    [@toggleMenu]
+                >{{ article.shortName }}</a>
+            </ng-template>
         </div>
     </div>
 </header>

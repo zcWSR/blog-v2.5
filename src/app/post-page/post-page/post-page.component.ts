@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy, HostBinding, HostListener }
 import { transition, style, trigger, animate, state } from '@angular/animations';
 import { PostPageStore } from '../post-page.store';
 import { ActivatedRoute } from '@angular/router';
+import { runInAction } from 'mobx';
+import { action } from 'mobx-angular';
 
 @Component({
   selector: 'app-post-page',
@@ -35,4 +37,15 @@ export class PostPageComponent implements OnInit {
     });
   }
 
+  onPostNavLoad(index: any[]) {
+    this.store.setIndexList(index)
+  }
+
+  scrollToTop(elementId, offset) {
+    const element = document.getElementById(elementId);
+    let position = element.offsetTop
+         + document.getElementsByClassName('jumbotron')[0].clientHeight - offset;
+    console.log('position', position);
+    this.store.scrollTo(position, 500);
+  }
 }

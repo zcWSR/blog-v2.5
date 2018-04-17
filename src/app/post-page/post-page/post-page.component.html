@@ -3,7 +3,31 @@
   <div class="container main-content">
     <div class="row post-list" [@enterLeave]="store.loading ? 'initial' : 'ready'">
       <div class="col s24 m20 l18 push-l3 push-m2 push-s0 cards-container">
-        <app-markdown [content]="store.allContent"></app-markdown>
+        <app-markdown [content]="store.allContent" [withIndex]="true" (onPostNavLoad)="onPostNavLoad($event)"></app-markdown>
+      </div>
+    </div>
+    <div class="index hide-on-small-and-down" [class.affix]="store.affixIndexList">
+        <ul>
+            <li
+              *ngFor="let i of store.navIndex"
+              [class.active]="i.active"
+            >
+              <a href="javascript:void(0);" (click)="scrollToTop(i.key, 50)">
+                <span>{{ i.text }}</span>
+              </a>
+            </li>
+        </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col s24 m20 l18 push-l3 push-m2 push-s0">
+        <disqus
+          *ngIf="!store.loading"
+          [identifier]="store.post.id"
+          [url]="store.getPageUrl"
+          [title]="store.post.title"
+        ></disqus>
       </div>
     </div>
   </div>

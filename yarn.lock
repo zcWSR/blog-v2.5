@@ -4310,6 +4310,10 @@ next-tick@1:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/next-tick/download/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
+ngx-disqus@^2.3.7:
+  version "2.3.7"
+  resolved "http://registry.npm.taobao.org/ngx-disqus/download/ngx-disqus-2.3.7.tgz#9b16dd37b634abc162ae6da22402cee891c4105a"
+
 no-case@^2.2.0:
   version "2.3.2"
   resolved "http://registry.npm.taobao.org/no-case/download/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"
