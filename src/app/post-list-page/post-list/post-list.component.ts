@@ -55,9 +55,9 @@ export class PostListComponent implements OnInit {
             this.store.pageSize = meta.data.pageSize;
             this.store.totalCount = meta.data.totalCount;
             if (params.page) {
-              if (params.page != 1)
+              if (+params.page !== 1) {
                 window.location.hash = 'top';
-                else {
+              } else {
                   window.location.hash = 'main-content-top';
                 }
             }

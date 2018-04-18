@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { observable, computed, action } from 'mobx-angular'; 
-import { IPost } from "../modules/post";
-import { AppStore } from "../app.store";
+import { Injectable } from '@angular/core';
+import { observable, computed, action } from 'mobx-angular';
+import { IPost } from '../modules/post';
+import { AppStore } from '../app.store';
 @Injectable()
 export class PostListPageStore {
   @observable curPage = 1;
@@ -10,10 +10,7 @@ export class PostListPageStore {
   @observable postList: IPost[] = null;
   @observable loading = false;
 
-  constructor(
-    private appStore: AppStore
-  ) {
-  }
+  constructor(private appStore: AppStore) {}
 
   @computed
   get showJumb() {
@@ -27,7 +24,7 @@ export class PostListPageStore {
 
   @computed
   get hasList() {
-    if (this.postList === null) return true;
+    if (this.postList === null) { return true; }
     return this.postList.length;
   }
 
@@ -35,5 +32,4 @@ export class PostListPageStore {
   changePage(page) {
     this.curPage = page;
   }
-  
 }

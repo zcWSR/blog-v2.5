@@ -77,14 +77,14 @@ export class PostPageStore {
   }
 
   scrollTo(to, duration) {
-    let scrollBody = document.documentElement;
-    let start = scrollBody.scrollTop,
-        change = to - start,
-        increment = 5;
+    const scrollBody = document.documentElement;
+    const start = scrollBody.scrollTop;
+    const change = to - start;
+    const increment = 5;
 
-    let animateScroll = elapsedTime =>{
+    const animateScroll = elapsedTime => {
         elapsedTime += increment;
-        let position = this.easeInOut(elapsedTime, start, change, duration);
+        const position = this.easeInOut(elapsedTime, start, change, duration);
         scrollBody.scrollTop = position;
         if (elapsedTime < duration) {
             setTimeout(() => {

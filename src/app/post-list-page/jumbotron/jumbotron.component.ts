@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 
-import { AppStore } from '../../app.store';;
+import { AppStore } from '../../app.store';
 import { JumbotronStore } from './jumbotron.store';
 import { Input } from '@angular/core';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -24,7 +24,7 @@ export class JumbotronComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.store.loadBg();
   }
-  
+
   ngAfterViewInit() {
     this.io.observe(this.ref.nativeElement);
   }
@@ -42,5 +42,4 @@ export class JumbotronComponent implements OnInit, AfterViewInit, OnDestroy {
       this.appStore.isHeaderTransparent = false;
     }
   }
-  
 }

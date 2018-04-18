@@ -1,5 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { transition, style, trigger, animate, state } from '@angular/animations';
+import {
+  transition,
+  style,
+  trigger,
+  animate,
+  state
+} from '@angular/animations';
 
 @Component({
   selector: 'app-loading',
@@ -23,9 +29,7 @@ import { transition, style, trigger, animate, state } from '@angular/animations'
   `
 })
 export class LoadingComponent implements OnInit {
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

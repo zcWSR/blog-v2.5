@@ -1,5 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy, HostBinding, HostListener, ElementRef, ViewChild } from '@angular/core';
-import { transition, style, trigger, animate, state } from '@angular/animations';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+  HostBinding,
+  HostListener,
+  ElementRef,
+  ViewChild
+} from '@angular/core';
+import {
+  transition,
+  style,
+  trigger,
+  animate,
+  state
+} from '@angular/animations';
 import { PostPageStore } from '../post-page.store';
 import { ActivatedRoute } from '@angular/router';
 import { runInAction } from 'mobx';
@@ -14,19 +29,17 @@ import { action } from 'mobx-angular';
     trigger('enterLeave', [
       state('initial', style({ opacity: 0, transform: 'translateY(10px)' })),
       state('ready', style({ opacity: 1, transform: 'translateY(0)' })),
-      transition('initial => ready', [
-        animate(`.25s 1s linear`)
-      ])
+      transition('initial => ready', [animate(`.25s 1s linear`)])
     ])
   ]
 })
-export class PostPageComponent implements OnInit {
+export class PostPageComponent implements OnInit, OnDestroy {
   @ViewChild('indexContainer') indexContainerRef: ElementRef;
-  io = new IntersectionObserver(([entry]) => this.cross([entry]), { threshold: [0, 1], rootMargin: '-50px 0px -70% 0px' });
-  constructor(
-    private store: PostPageStore,
-    private route: ActivatedRoute
-  ) {
+  io = new IntersectionObserver(([entry]) => this.cross([entry]), {
+    threshold: [0, 1],
+    rootMargin: '-50px 0px -70% 0px'
+  });
+  constructor(private store: PostPageStore, private route: ActivatedRoute) {
     this.store.setDefault();
   }
 
@@ -38,23 +51,21 @@ export class PostPageComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.io.disconnect();
+  }
+
   onHeadListLoad(headerList: any[]) {
-    this.store.headerList = headerList
+    this.store.headerList = headerList;
     setTimeout(() => {
       this.startObserve(headerList);
     }, 500);
   }
 
   startObserve(headerList) {
-    for (let header of headerList) {
+    headerList.forEach(header => {
       this.io.observe(document.getElementById(header.id));
-    }
-  }
-
-  endObserve(index) {
-    for (let i of index) {
-      this.io.unobserve(document.getElementById(i.id));
-    }
+    });
   }
 
   setIndexStatus(isActive, indexEle) {
@@ -68,7 +79,7 @@ export class PostPageComponent implements OnInit {
     this.setIndexEleInView(indexEle);
     this.scrollToTop(headerId, offset);
   }
-  
+
   setIndexEleInView(indexEle) {
     const containerEle = this.indexContainerRef.nativeElement;
     containerEle.scrollTop = indexEle.offsetTop - containerEle.clientHeight / 2;
@@ -76,8 +87,10 @@ export class PostPageComponent implements OnInit {
 
   scrollToTop(elementId, offset) {
     const element = document.getElementById(elementId);
-    let position = element.offsetTop
-         + document.getElementsByClassName('jumbotron')[0].clientHeight - offset;
+    const position =
+      element.offsetTop +
+      document.getElementsByClassName('jumbotron')[0].clientHeight -
+      offset;
     this.store.scrollTo(position, 500);
   }
 

@@ -1,4 +1,4 @@
-import { IPost } from "./post";
+import { IPost } from './post';
 
 export interface IPostList {
   list: IPost[];

@@ -1,10 +1,15 @@
-import { Component, OnInit, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-pager',
   templateUrl: './pager.component.html',
-  styleUrls: ['./pager.component.scss'],
+  styleUrls: ['./pager.component.scss']
 })
 export class PagerComponent implements OnInit, OnChanges {
   @Input() linkPrefix = '/post-list/page';
@@ -38,7 +43,7 @@ export class PagerComponent implements OnInit, OnChanges {
           }
         } else {
           const half = Math.floor(itemCount / 2);
-          for (let i = 0; i < itemCount ; i++) {
+          for (let i = 0; i < itemCount; i++) {
             items[this.curPage - half + i] = false;
           }
         }
@@ -57,9 +62,7 @@ export class PagerComponent implements OnInit, OnChanges {
     return this.curPage !== Math.ceil(this.totalCount / this.pageSize);
   }
 
-  constructor(
-    // private store: PagerStore
-  ) {}
+  constructor() { }
 
   ngOnInit() {
     this.getPagerItems();
@@ -87,5 +90,4 @@ export class PagerComponent implements OnInit, OnChanges {
     this.curPage++;
     this.getPagerItems();
   }
-
 }

@@ -43,4 +43,4 @@ import { ToArrayPipe } from './to-array.pipe';
     ToArrayPipe
   ]
 })
-export class CoreModule { }
+export class CoreModule {}

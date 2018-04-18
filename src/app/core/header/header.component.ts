@@ -1,9 +1,20 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
-import { transition, style, trigger, animate, state } from '@angular/animations';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  ChangeDetectionStrategy
+} from '@angular/core';
+import {
+  transition,
+  style,
+  trigger,
+  animate,
+  state
+} from '@angular/animations';
 import { Router } from '@angular/router';
 import { runInAction } from 'mobx';
 import { observable, computed, action } from 'mobx-angular';
-
 
 import { AppStore } from '../../app.store';
 
@@ -26,11 +37,17 @@ import { AppStore } from '../../app.store';
     trigger('toggleMenu', [
       transition(':enter', [
         style({ height: 0, paddingTop: 0, paddingBottom: 0 }),
-        animate('.2s ease-in-out', style({ height: '*', paddingTop: '*', paddingBottom: '*' }))
+        animate(
+          '.2s ease-in-out',
+          style({ height: '*', paddingTop: '*', paddingBottom: '*' })
+        )
       ]),
       transition(':leave', [
         style({ height: '*', paddingTop: '*', paddingBottom: '*' }),
-        animate('.2s ease-in-out', style({ height: 0, paddingTop: 0, paddingBottom: 0 }))
+        animate(
+          '.2s ease-in-out',
+          style({ height: 0, paddingTop: 0, paddingBottom: 0 })
+        )
       ])
     ])
   ]
@@ -41,26 +58,23 @@ export class HeaderComponent implements OnInit {
   @observable showDropdownMenu = false;
 
   @computed
-  get showTitle () {
+  get showTitle() {
     return !this.appStore.isHeaderTransparent;
   }
-  constructor(
-    private appStore: AppStore,
-    private router: Router
-  ) { }
+  constructor(private appStore: AppStore, private router: Router) {}
 
   @action('toggle dropdown Menu')
-  toggleDropdownMenu () {
+  toggleDropdownMenu() {
     this.showDropdownMenu = !this.showDropdownMenu;
   }
 
-  ngOnInit () {
+  ngOnInit() {
     window.addEventListener('click', e => {
       if (
         e.target === this.menuIconRef.nativeElement ||
         e.target === this.menuBtnRef.nativeElement
       ) {
-        this.toggleDropdownMenu()
+        this.toggleDropdownMenu();
       } else {
         runInAction(() => {
           this.showDropdownMenu = false;
@@ -75,5 +89,4 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['search', 'post', searchValue]);
     form.search.value = '';
   }
-
 }

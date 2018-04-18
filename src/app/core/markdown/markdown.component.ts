@@ -1,4 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  EventEmitter,
+  Output,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 import { Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MarkdownService } from './markdown.service';
@@ -9,16 +17,14 @@ import { observable, computed } from 'mobx-angular';
   selector: 'app-markdown',
   template: `<div *mobxAutorun #ref class="markdown-body" [innerHTML]="innerHTML"></div>`,
   // styleUrls: ['./markdown.components.scss'],
-  providers: [
-    MarkdownService
-  ]
+  providers: [MarkdownService]
 })
 export class MarkdownComponent implements OnInit {
   @ViewChild('ref') ref: ElementRef;
   _content = '';
   innerHTML: any = '';
 
-  @Output() onHeadListLoad = new EventEmitter<{}>();
+  @Output() headerListLoad = new EventEmitter<{}>();
   @Input() withHeaderList = false;
   @Input('content')
   get content() {
@@ -28,15 +34,15 @@ export class MarkdownComponent implements OnInit {
     this._content = c;
     const content = this.mdService.markdown(c);
     this.innerHTML = this.domSanitizer.bypassSecurityTrustHtml(content || '');
-    if (this.withHeaderList && this.mdService.headerList.length)
-      this.onHeadListLoad.emit(this.mdService.headerList);
+    if (this.withHeaderList && this.mdService.headerList.length) {
+      this.headerListLoad.emit(this.mdService.headerList);
+    }
   }
 
-
   constructor(
-      private mdService: MarkdownService,
-      private domSanitizer: DomSanitizer
-  ) { }
+    private mdService: MarkdownService,
+    private domSanitizer: DomSanitizer
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 }

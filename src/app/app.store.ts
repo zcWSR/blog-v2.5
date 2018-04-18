@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { observable, action } from 'mobx-angular';
 import { IImg } from './modules/img';
+import { IArticle } from './modules/article';
 
 @Injectable()
 export class AppStore {
@@ -15,6 +16,6 @@ export class AppStore {
   hostBg: IImg;
   hostBgMainColor = '';
   postListPageSize = 0;
-  articles = [];
+  articles: IArticle[] = [];
   @observable isHeaderTransparent = true;
 }
