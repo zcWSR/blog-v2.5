@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search-page',
@@ -8,9 +9,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class SearchPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
+    
   }
 
 }

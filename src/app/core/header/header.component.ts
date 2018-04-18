@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { transition, style, trigger, animate, state } from '@angular/animations';
+import { Router } from '@angular/router';
 import { runInAction } from 'mobx';
 import { observable, computed, action } from 'mobx-angular';
 
@@ -44,7 +45,8 @@ export class HeaderComponent implements OnInit {
     return !this.appStore.isHeaderTransparent;
   }
   constructor(
-    private appStore: AppStore
+    private appStore: AppStore,
+    private router: Router
   ) { }
 
   @action('toggle dropdown Menu')
@@ -65,6 +67,13 @@ export class HeaderComponent implements OnInit {
         });
       }
     });
+  }
+
+  onSearch(form, event) {
+    event.preventDefault();
+    const searchValue = form.search.value;
+    this.router.navigate(['search', 'post', searchValue]);
+    form.search.value = '';
   }
 
 }

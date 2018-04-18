@@ -9,8 +9,8 @@ const routes: Routes = [
     path: 'post-list',
     component: PostListPageComponent,
     children: [
-      { path: '', component: PostListComponent },
       { path: 'page/:page', component: PostListComponent },
+      { path: '', component: PostListComponent },
     ]
   }
 ];

@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AppStore } from '../../app.store';
 
 @Component({
   selector: 'app-search',
@@ -8,9 +10,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private appStore: AppStore
+  ) { }
 
   ngOnInit() {
+    this.appStore.isHeaderTransparent = false;
   }
 
 }
