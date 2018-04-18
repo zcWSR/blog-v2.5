@@ -10,7 +10,7 @@ import { AppStore } from '../../app.store';
 })
 export class SmallJumbotronComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('jumbotron') ref: ElementRef;
-  io = new IntersectionObserver(([entry]) => this.cross(entry), { threshold: [0.000001], rootMargin: '10px' });
+  io = new IntersectionObserver(([entry]) => this.cross(entry), { threshold: [0.000001] });
   constructor(
     private appStore: AppStore,
     private store: PostPageStore

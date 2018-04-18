@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, HostBinding, HostListener } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, HostBinding, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { transition, style, trigger, animate, state } from '@angular/animations';
 import { PostPageStore } from '../post-page.store';
 import { ActivatedRoute } from '@angular/router';
@@ -21,7 +21,8 @@ import { action } from 'mobx-angular';
   ]
 })
 export class PostPageComponent implements OnInit {
-
+  @ViewChild('indexContainer') indexContainerRef: ElementRef;
+  io = new IntersectionObserver(([entry]) => this.cross([entry]), { threshold: [0, 1], rootMargin: '-50px 0px -70% 0px' });
   constructor(
     private store: PostPageStore,
     private route: ActivatedRoute
@@ -37,15 +38,53 @@ export class PostPageComponent implements OnInit {
     });
   }
 
-  onPostNavLoad(index: any[]) {
-    this.store.setIndexList(index)
+  onHeadListLoad(headerList: any[]) {
+    this.store.headerList = headerList
+    setTimeout(() => {
+      this.startObserve(headerList);
+    }, 500);
+  }
+
+  startObserve(headerList) {
+    for (let header of headerList) {
+      this.io.observe(document.getElementById(header.id));
+    }
+  }
+
+  endObserve(index) {
+    for (let i of index) {
+      this.io.unobserve(document.getElementById(i.id));
+    }
+  }
+
+  setIndexStatus(isActive, indexEle) {
+    if (isActive) {
+      this.setIndexEleInView(indexEle);
+    }
+    return isActive;
+  }
+
+  scrollToHeader(headerId, offset, indexEle) {
+    this.setIndexEleInView(indexEle);
+    this.scrollToTop(headerId, offset);
+  }
+  
+  setIndexEleInView(indexEle) {
+    const containerEle = this.indexContainerRef.nativeElement;
+    containerEle.scrollTop = indexEle.offsetTop - containerEle.clientHeight / 2;
   }
 
   scrollToTop(elementId, offset) {
     const element = document.getElementById(elementId);
     let position = element.offsetTop
          + document.getElementsByClassName('jumbotron')[0].clientHeight - offset;
-    console.log('position', position);
     this.store.scrollTo(position, 500);
+  }
+
+  cross(entry) {
+    entry = entry[entry.length - 1];
+    if (entry.intersectionRatio < 1 && entry.intersectionRatio) {
+      this.store.activeIndex(entry.target.id);
+    }
   }
 }

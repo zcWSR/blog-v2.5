@@ -11,6 +11,8 @@
     position: absolute;
     top: 5rem;
     right: 1rem;
+    max-height: 50vh;
+    overflow: scroll;
 
     &.affix {
         position: fixed;

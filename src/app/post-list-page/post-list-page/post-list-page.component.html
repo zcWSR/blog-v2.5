@@ -1,7 +1,8 @@
 <div *mobxAutorun>
   <app-jumbotron *ngIf="store.showJumb"></app-jumbotron>
   <div class="white-bg">
-    <div class="container main-content">
+    <a id="main-content-top"></a>
+    <div class="container main-content" >
       <div class="row post-list">
         <div class="col s24 m20 l18 push-l3 push-m2 push-s0 cards-container">
           <router-outlet></router-outlet>

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PostListPageComponent } from './post-list-page/post-list-page/post-list-page.component';
 import { PostListComponent } from './post-list-page/post-list/post-list.component';
 import { PostPageComponent } from './post-page/post-page/post-page.component';
+import { SearchPageComponent } from './search-page/search-page/search-page.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', component: PostListComponent }
     ],
-    data: { animation: 'root' }
+    data: { animation: 'post' }
   }, {
     path: 'post/:postId',
     component: PostPageComponent,
@@ -21,6 +22,11 @@ const routes: Routes = [
     path: 'post-list',
     component: PostListPageComponent,
     data: { animation: 'post-list' }
+  },
+  {
+    path: 'search',
+    component: SearchPageComponent,
+    data: { animation: 'search' }
   }
 ];
 

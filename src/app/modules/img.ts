@@ -1,4 +1,5 @@
 export interface IImg {
   name: string;
-  color: string;
+  url: string;
+  mainColor: string;
 }

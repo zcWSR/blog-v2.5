@@ -8,6 +8,7 @@ import { observable, computed } from 'mobx-angular';
 @Component({
   selector: 'app-markdown',
   template: `<div *mobxAutorun #ref class="markdown-body" [innerHTML]="innerHTML"></div>`,
+  // styleUrls: ['./markdown.components.scss'],
   providers: [
     MarkdownService
   ]
@@ -16,6 +17,9 @@ export class MarkdownComponent implements OnInit {
   @ViewChild('ref') ref: ElementRef;
   _content = '';
   innerHTML: any = '';
+
+  @Output() onHeadListLoad = new EventEmitter<{}>();
+  @Input() withHeaderList = false;
   @Input('content')
   get content() {
     return this._content;
@@ -24,11 +28,10 @@ export class MarkdownComponent implements OnInit {
     this._content = c;
     const content = this.mdService.markdown(c);
     this.innerHTML = this.domSanitizer.bypassSecurityTrustHtml(content || '');
-    this.onPostNavLoad.emit(this.mdService.index);
+    if (this.withHeaderList && this.mdService.headerList.length)
+      this.onHeadListLoad.emit(this.mdService.headerList);
   }
 
-  @Output() onPostNavLoad = new EventEmitter<{}>();
-  @Input() withIndex = false;
 
   constructor(
       private mdService: MarkdownService,

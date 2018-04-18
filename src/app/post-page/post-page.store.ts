@@ -26,7 +26,7 @@ export class PostPageStore {
   };
 
   @observable post: IPost = this.defaultPost;
-  @observable navIndex = [{ id: 'header-0', active: true, text: 'aaaa' }];
+  @observable headerList = [];
 
   @observable loading = true;
 
@@ -45,14 +45,11 @@ export class PostPageStore {
     return !this.appStore.isHeaderTransparent;
   }
 
-  @action() 
-  setIndexList(index) {
-    this.navIndex = index;
-  }
-
   @action('set default')
   setDefault() {
     this.post = this.defaultPost;
+    this.loading = true;
+    this.headerList = [];
   }
 
   @action('get post')
@@ -67,6 +64,16 @@ export class PostPageStore {
         }
         this.loading = false;
       });
+  }
+
+
+  @action('active index')
+  activeIndex(indexId) {
+    this.headerList.forEach(item => {
+      item.active = false;
+    });
+    const index = this.headerList.findIndex(item => item.id === indexId);
+    this.headerList[index].active = true;
   }
 
   scrollTo(to, duration) {

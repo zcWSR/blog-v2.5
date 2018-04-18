@@ -14,6 +14,7 @@ import { PostPageComponent } from './post-page/post-page/post-page.component';
 import { PostPageModule } from './post-page/post-page.module';
 import { AppConfigSerivce } from './app-config.service';
 import { APP_INITIALIZER } from '@angular/core';
+import { SearchPageModule } from './search-page/search-page.module';
 
 
 export function appConfigServiceFactory(service: AppConfigSerivce) {
@@ -31,6 +32,7 @@ export function appConfigServiceFactory(service: AppConfigSerivce) {
     CoreModule,
     PostListPageModule,
     PostPageModule,
+    SearchPageModule,
     AppRoutingModule
   ],
   providers: [

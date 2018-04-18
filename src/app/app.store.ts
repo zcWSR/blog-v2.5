@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { observable, action } from 'mobx-angular';
+import { IImg } from './modules/img';
 
 @Injectable()
 export class AppStore {
@@ -11,7 +12,7 @@ export class AppStore {
   // @observable articals = [];
   blogName = '';
   slogen = '';
-  hostBg = '';
+  hostBg: IImg;
   hostBgMainColor = '';
   postListPageSize = 0;
   articles = [];

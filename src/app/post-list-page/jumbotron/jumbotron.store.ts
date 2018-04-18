@@ -28,6 +28,6 @@ export class JumbotronStore {
         this.showBg = true;
       });
     };
-    bg.src = this.appStore.hostBg;
+    bg.src = this.appStore.hostBg.url;
   }
 }
