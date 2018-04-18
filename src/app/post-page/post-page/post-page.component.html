@@ -3,7 +3,7 @@
   <div class="container main-content">
     <div class="row post-list" [@enterLeave]="store.loading ? 'initial' : 'ready'">
       <div class="col s24 m20 l18 push-l3 push-m2 push-s0 cards-container">
-        <app-markdown [content]="store.allContent" [withHeaderList]="true" (onHeadListLoad)="onHeadListLoad($event)"></app-markdown>
+        <app-markdown [content]="store.allContent" [withHeaderList]="true" (headerListLoad)="headerListLoad($event)"></app-markdown>
       </div>
     </div>
     <div #indexContainer class="index hide-on-small-and-down" [class.affix]="store.affixIndexList">
@@ -12,7 +12,7 @@
               *ngFor="let indexInfo of store.headerList"
               #indexEle
               [class.active]="setIndexStatus(indexInfo.active, indexEle)"
-              (click)="scrollToHeader(indexInfo.id, 25, indexEle)"
+              (click)="scrollToHeader(indexInfo.id, 30, indexEle)"
             >
               <a href="javascript:void(0);">
                 <span>{{ indexInfo.text }}</span>

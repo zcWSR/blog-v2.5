@@ -3,9 +3,9 @@
         <a
             routerLink="{{ getLink(curPage - 1) }}"
             routerLinkActive="canGoPrev()"
-        ><i class="material-icons">keyboard_arrow_left</i></a>
+        ><i class="fa fa-angle-left"></i></a>
     </div>
-    <div class="pager-item" *ngFor="let pageItem of pagerItems | withKey" [class.selected]="pageItem.value">
+    <div class="pager-item" *ngFor="let pageItem of pagerItems | toArray" [class.selected]="pageItem.value">
         <a routerLink="{{ getLink(pageItem.key) }}">
         <!-- <a (click)="goPage(pageItem.key)"> -->
             {{ pageItem.key }}
@@ -15,6 +15,6 @@
         <a
             routerLink="{{ getLink(curPage + 1) }}"
             routerLinkActive="canGoNext()"
-        ><i class="material-icons">keyboard_arrow_right</i></a>
+        ><i class="fa fa-angle-right"></i></a>
     </div>
 </div>

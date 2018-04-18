@@ -16,19 +16,19 @@
   <div class="card-info with-border">
       <ul>
           <li>
-              <i class="material-icons">today</i>
+              <i class="fa fa-calendar"></i>
               <ul>
                   <li>{{ (post.createAt | dateX) }}</li>
               </ul>
           </li>
           <li>
-              <i class="material-icons">content_paste</i>
+              <i class="fa fa-clipboard"></i>
               <ul>
                   <li><a routerLink="{{ '/category/' + post.category }}">{{ post.category }}</a></li>
               </ul>
           </li>
           <li>
-              <i class="material-icons">label</i>
+              <i class="fa fa-tag"></i>
               <ul>
                   <li *ngFor="let tag of post.labels"><a routerLink="{{ '/label/' + tag }}">{{ tag }}</a></li>
               </ul>

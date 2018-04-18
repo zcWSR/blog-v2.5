@@ -37,7 +37,7 @@ export class PostPageComponent implements OnInit, OnDestroy {
   @ViewChild('indexContainer') indexContainerRef: ElementRef;
   io = new IntersectionObserver(([entry]) => this.cross([entry]), {
     threshold: [0, 1],
-    rootMargin: '-50px 0px -70% 0px'
+    rootMargin: '-50px 0px -80% 0px'
   });
   constructor(private store: PostPageStore, private route: ActivatedRoute) {
     this.store.setDefault();
@@ -55,7 +55,7 @@ export class PostPageComponent implements OnInit, OnDestroy {
     this.io.disconnect();
   }
 
-  onHeadListLoad(headerList: any[]) {
+  headerListLoad(headerList: any[]) {
     this.store.headerList = headerList;
     setTimeout(() => {
       this.startObserve(headerList);
