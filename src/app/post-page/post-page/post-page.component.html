@@ -6,7 +6,7 @@
         <app-markdown [content]="store.allContent" [withHeaderList]="true" (headerListLoad)="headerListLoad($event)"></app-markdown>
       </div>
     </div>
-    <div #indexContainer class="index hide-on-small-and-down" [class.affix]="store.affixIndexList">
+    <div #indexContainer class="index hide-on-small" [class.affix]="store.affixIndexList">
         <ul>
             <li
               *ngFor="let indexInfo of store.headerList"

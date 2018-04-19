@@ -1,4 +1,26 @@
-<p>
-  search-page works!
-  <router-outlet></router-outlet>
-</p>
+<div class="white-bg">
+  <div class="container" *mobxAutorun>
+    <h2>搜索</h2>
+    <div class="row searchBar">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="row">
+      <div class="col s24 m20 l18 push-l3 push-m2 push-s0" >
+        <app-simple-card
+          *ngFor="let post of store.resultList"
+          [keyword]="store.searchContent"
+          [keywordType]="store.searchType"
+          [post]="post"
+          [style.marginTop]="'2em'"
+        ></app-simple-card>
+      </div>
+    </div>
+    <div class="row loader" [ngSwitch]="store.loading">
+        <div class="col s24 m20 l18 push-l3 push-m2 push-s0" >
+          <span class="center" *ngSwitchCase="1">加载中...</span>
+          <span *ngSwitchCase="2">没有更多</span>
+          <span *ngSwitchCase="-1">出现错误, 请刷新</span>
+        </div>
+    </div>
+  </div>
+</div>

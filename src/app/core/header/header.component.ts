@@ -86,7 +86,9 @@ export class HeaderComponent implements OnInit {
   onSearch(form, event) {
     event.preventDefault();
     const searchValue = form.search.value;
-    this.router.navigate(['search', 'post', searchValue]);
+    if (searchValue) {
+      this.router.navigate(['search', 'post', searchValue]);
+    }
     form.search.value = '';
   }
 }

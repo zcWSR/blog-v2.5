@@ -24,13 +24,13 @@
           <li>
               <i class="fa fa-clipboard"></i>
               <ul>
-                  <li><a routerLink="{{ '/category/' + post.category }}">{{ post.category }}</a></li>
+                  <li><a routerLink="{{ '/search/category/' + post.category }}">{{ post.category }}</a></li>
               </ul>
           </li>
           <li>
               <i class="fa fa-tag"></i>
               <ul>
-                  <li *ngFor="let tag of post.labels"><a routerLink="{{ '/label/' + tag }}">{{ tag }}</a></li>
+                  <li *ngFor="let tag of post.labels"><a routerLink="{{ '/search/label/' + tag }}">{{ tag }}</a></li>
               </ul>
           </li>
       </ul>

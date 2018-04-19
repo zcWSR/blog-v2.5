@@ -9,18 +9,23 @@ import { SearchComponent } from './search/search.component';
 import { SelectComponent } from './select/select.component';
 import { SearchPageRoutingModule } from './search-page.routing';
 import { CoreModule } from '../core/core.module';
+import { MobxAngularModule } from 'mobx-angular';
+import { SearchPageStore } from './search-page.store';
+import { SimpleCardComponent } from './simple-card/simple-card.component';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     HttpClientJsonpModule,
+    MobxAngularModule,
     CoreModule,
     RouterModule,
     SearchPageRoutingModule,
     BrowserAnimationsModule
   ],
-  declarations: [SearchPageComponent, SearchComponent, SelectComponent],
+  declarations: [SearchPageComponent, SearchComponent, SelectComponent, SimpleCardComponent],
+  providers: [SearchPageStore],
   exports: [
     SearchPageComponent
   ]
