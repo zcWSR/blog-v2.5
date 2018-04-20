@@ -19,11 +19,11 @@ const routes: Routes = [
     component: PostPageComponent,
     data: { animation: 'post' }
   },
-  // {
-  //   path: 'article',
-  //   component: ArticlePageComponent,
-  //   data: { animation: 'article' }
-  // },
+  {
+    path: 'article/:shortName',
+    component: ArticlePageComponent,
+    data: { animation: 'article' }
+  },
   {
     path: 'post-list',
     component: PostListPageComponent,

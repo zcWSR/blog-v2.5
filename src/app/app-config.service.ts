@@ -23,7 +23,6 @@ export class AppConfigSerivce {
           this.appStore.postListPageSize = data.postListPageSize;
           this.appStore.articles = data.articles;
           console.log('config loaded...');
-          this.loadAsyncRoute();
           resolve(true);
         } else {
           this.error = meta.errmsg;
@@ -33,9 +32,5 @@ export class AppConfigSerivce {
         }
       });
     });
-  }
-
-  loadAsyncRoute() {
-    // console.log(this.router.config);
   }
 }

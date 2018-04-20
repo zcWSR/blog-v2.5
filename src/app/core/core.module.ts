@@ -10,9 +10,9 @@ import { MarkdownComponent } from './markdown/markdown.component';
 import { WithKeyPipe } from './with-key.pipe';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading.component';
+import { SmallJumbotronComponent } from './small-jumbotron/small-jumbotron.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToArrayPipe } from './to-array.pipe';
-import { SmallJumbotronComponent } from './small-jumbotron/small-jumbotron.component';
 
 @NgModule({
   imports: [

@@ -1,0 +1,40 @@
+<app-small-jumbotron
+  *mobxAutorun
+  [style.flex]="'0 0 auto'"
+  [title]="store.article.title"
+></app-small-jumbotron>
+<div class="white-bg" *mobxAutorun>
+  <div class="container main-content">
+    <div class="row post-list" [@enterLeave]="store.loading ? 'initial' : 'ready'">
+      <div class="col s24 m20 l18 push-l3 push-m2 push-s0 cards-container">
+        <app-markdown [content]="store.allContent" [withHeaderList]="true" (headerListLoad)="headerListLoad($event)"></app-markdown>
+      </div>
+    </div>
+    <div #indexContainer class="index hide-on-small" [class.affix]="store.affixIndexList">
+        <ul>
+            <li
+              *ngFor="let indexInfo of store.headerList"
+              #indexEle
+              [class.active]="setIndexStatus(indexInfo.active, indexEle)"
+              (click)="scrollToHeader(indexInfo.id, 30, indexEle)"
+            >
+              <a href="javascript:void(0);">
+                <span>{{ indexInfo.text }}</span>
+              </a>
+            </li>
+        </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col s24 m20 l18 push-l3 push-m2 push-s0">
+        <disqus
+          *ngIf="!store.loading"
+          [identifier]="store.post.id"
+          [url]="store.getPageUrl"
+          [title]="store.post.title"
+        ></disqus>
+      </div>
+    </div>
+  </div>
+</div> 
