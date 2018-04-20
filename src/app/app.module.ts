@@ -1,20 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PostListPageModule } from './post-list-page/post-list-page.module';
-import { AppStore } from './app.store';
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
-
-import { SmallJumbotronComponent } from './post-page/small-jumbotron/small-jumbotron.component';
-import { PostPageComponent } from './post-page/post-page/post-page.component';
 import { PostPageModule } from './post-page/post-page.module';
+import { SearchPageModule } from './search-page/search-page.module';
+import { ArticlePageModule } from './article-page/article-page.module';
+
+import { AppStore } from './app.store';
 import { AppConfigSerivce } from './app-config.service';
 import { APP_INITIALIZER } from '@angular/core';
-import { SearchPageModule } from './search-page/search-page.module';
 
 
 export function appConfigServiceFactory(service: AppConfigSerivce) {
@@ -33,6 +32,7 @@ export function appConfigServiceFactory(service: AppConfigSerivce) {
     PostListPageModule,
     PostPageModule,
     SearchPageModule,
+    ArticlePageModule,
     AppRoutingModule
   ],
   providers: [

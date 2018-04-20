@@ -39,7 +39,7 @@ export class PostPageComponent implements OnInit, OnDestroy {
     threshold: [0, 1],
     rootMargin: '-50px 0px -80% 0px'
   });
-  constructor(private store: PostPageStore, private route: ActivatedRoute) {
+  constructor(public store: PostPageStore, private route: ActivatedRoute) {
     this.store.setDefault();
   }
 

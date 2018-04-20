@@ -4,6 +4,7 @@ import { PostListPageComponent } from './post-list-page/post-list-page/post-list
 import { PostListComponent } from './post-list-page/post-list/post-list.component';
 import { PostPageComponent } from './post-page/post-page/post-page.component';
 import { SearchPageComponent } from './search-page/search-page/search-page.component';
+import { ArticlePageComponent } from './article-page/article-page/article-page.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
     component: PostPageComponent,
     data: { animation: 'post' }
   },
+  // {
+  //   path: 'article',
+  //   component: ArticlePageComponent,
+  //   data: { animation: 'article' }
+  // },
   {
     path: 'post-list',
     component: PostListPageComponent,

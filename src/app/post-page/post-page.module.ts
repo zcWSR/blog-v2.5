@@ -7,7 +7,6 @@ import { CoreModule } from '../core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MobxAngularModule } from 'mobx-angular';
 import { PostPageComponent } from './post-page/post-page.component';
-import { SmallJumbotronComponent } from './small-jumbotron/small-jumbotron.component';
 import { PostPageStore } from './post-page.store';
 
 @NgModule({
@@ -25,7 +24,6 @@ import { PostPageStore } from './post-page.store';
     PostPageStore
   ],
   declarations: [
-    SmallJumbotronComponent,
     PostPageComponent
   ],
   exports: [

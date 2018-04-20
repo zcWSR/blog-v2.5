@@ -84,4 +84,9 @@ export class HeaderComponent implements OnInit {
     }
     form.search.value = '';
   }
+
+  backToHome() {
+    this.router.navigate(['/']);
+    window.location.hash = '#top';
+  }
 }

@@ -1,4 +1,11 @@
-<app-small-jumbotron [style.flex]="'0 0 auto'"></app-small-jumbotron>
+<app-small-jumbotron
+  *mobxAutorun
+  [style.flex]="'0 0 auto'"
+  [title]="store.post.title"
+  [date]="store.post.createAt"
+  [category]="store.post.category"
+  [labels]="store.post.labels"
+></app-small-jumbotron>
 <div class="white-bg" *mobxAutorun>
   <div class="container main-content">
     <div class="row post-list" [@enterLeave]="store.loading ? 'initial' : 'ready'">

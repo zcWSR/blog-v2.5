@@ -1,7 +1,7 @@
 <header class="fix-top" [class.transparent]="appStore.isHeaderTransparent">
     <div class="logo">
         <img class="hide-on-small" src="avatar.jpg">
-        <a *ngIf="!appStore.isHeaderTransparent" routerLink="/" [@showHideTitle]>{{ appStore.blogName }}</a>
+        <a *ngIf="!appStore.isHeaderTransparent" href="javascript:;" (click)="backToHome()" [@showHideTitle]>{{ appStore.blogName }}</a>
     </div>
     <div class="right">
         <div class="search">

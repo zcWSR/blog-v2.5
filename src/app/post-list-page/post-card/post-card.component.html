@@ -14,25 +14,17 @@
       <app-markdown [content]="post.section"></app-markdown>
   </div>
   <div class="card-info with-border">
-      <ul>
-          <li>
-              <i class="fa fa-calendar"></i>
-              <ul>
-                  <li>{{ (post.createAt | dateX) }}</li>
-              </ul>
-          </li>
-          <li>
-              <i class="fa fa-clipboard"></i>
-              <ul>
-                  <li><a routerLink="{{ '/search/category/' + post.category }}">{{ post.category }}</a></li>
-              </ul>
-          </li>
-          <li>
-              <i class="fa fa-tag"></i>
-              <ul>
-                  <li *ngFor="let tag of post.labels"><a routerLink="{{ '/search/label/' + tag }}">{{ tag }}</a></li>
-              </ul>
-          </li>
-      </ul>
+      <div class="label-group">
+          <div class="label-icon"><i class="fa fa-calendar"></i></div>
+          <div class="label">{{ (post.createAt | dateX) }}</div>
+      </div>
+      <div class="label-group">
+          <div class="label-icon"><i class="fa fa-clipboard"></i></div>
+          <div class="label"><a routerLink="{{ '/search/category/' + post.category }}">{{ post.category }}</a></div>
+      </div>
+      <div class="label-group">
+          <div class="label-icon"><i class="fa fa-tag"></i></div>
+          <div class="label" *ngFor="let tag of post.labels"><a routerLink="{{ '/search/label/' + tag }}">{{ tag }}</a></div>
+      </div>
   </div>
 </div>

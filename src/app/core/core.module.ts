@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToArrayPipe } from './to-array.pipe';
+import { SmallJumbotronComponent } from './small-jumbotron/small-jumbotron.component';
 
 @NgModule({
   imports: [
@@ -27,8 +28,9 @@ import { ToArrayPipe } from './to-array.pipe';
     FooterComponent,
     PagerComponent,
     LoadingComponent,
-    DateXPipe,
     MarkdownComponent,
+    SmallJumbotronComponent,
+    DateXPipe,
     WithKeyPipe,
     ToArrayPipe
   ],
@@ -37,8 +39,9 @@ import { ToArrayPipe } from './to-array.pipe';
     FooterComponent,
     PagerComponent,
     LoadingComponent,
-    DateXPipe,
     MarkdownComponent,
+    SmallJumbotronComponent,
+    DateXPipe,
     WithKeyPipe,
     ToArrayPipe
   ]
