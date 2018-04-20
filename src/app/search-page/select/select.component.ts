@@ -15,19 +15,19 @@ import {
   animate,
   state
 } from '@angular/animations';
-import { observable, computed, action } from 'mobx-angular';
+import { SelectStore } from './select.store';
 
 @Component({
   selector: 'app-select',
   template: `
-  <div #ref class="select" [class.active]="show" (click)="show = true" *mobxAutorun>
-    <div class="label">{{ selectedOption.name }}</div>
+  <div #ref class="select" [class.active]="store.show" (click)="store.show = true" *mobxAutorun>
+    <div class="label">{{ store.label }}</div>
     <i class="fa fa-angle-down"></i>
     <div class="option-container">
-      <ng-container *ngIf="show">
+      <ng-container *ngIf="store.show">
         <div
           class="option"
-          *ngFor="let o of (options | withKey)"
+          *ngFor="let o of (store.options | withKey)"
           [class.active]="o.value.active"
           [@toggleOption]
           (click)="select(o.key, $event)"
@@ -38,6 +38,7 @@ import { observable, computed, action } from 'mobx-angular';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./select.component.scss'],
+  providers: [SelectStore],
   animations: [
     trigger('toggleOption', [
       transition(':enter', [
@@ -59,31 +60,31 @@ import { observable, computed, action } from 'mobx-angular';
 })
 export class SelectComponent implements OnInit {
   @ViewChild('ref') ref: ElementRef;
-  @observable show = false;
-  @observable @Input() options = [];
+  @Input('options')
+  get options() {
+    return this.store.options;
+  }
+  set options(o) {
+    this.store.options = o;
+  }
   @Output() selected = new EventEmitter<{}>();
-
-  @computed
-  get selectedOption() {
-    return this.options.find(item => item.active) || this.options[0] || {};
-  }
-
-  @action('select')
-  select(index, event) {
-    event.cancelBubble = true;
-    this.options.forEach(item => item.active = false);
-    this.options[index].active = true;
-    this.show = false;
-    this.selected.emit(this.options[index]);
-  }
-
-  constructor() { }
+  constructor(
+    private store: SelectStore
+  ) { }
 
   ngOnInit() {
     window.addEventListener('click', e => {
       if (e.target !== this.ref.nativeElement) {
-       this.show = false;
+       this.store.show = false;
       }
     });
+  }
+
+  select(index, event?) {
+    if (event) {
+      event.cancelBubble = true;
+    }
+    this.store.select(index);
+    this.selected.emit(this.options[index]);
   }
 }

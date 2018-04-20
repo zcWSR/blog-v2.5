@@ -13,13 +13,10 @@ import {
   state
 } from '@angular/animations';
 import { Router } from '@angular/router';
-import { runInAction } from 'mobx';
-import { observable, computed, action } from 'mobx-angular';
 
 import { AppStore } from '../../app.store';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
@@ -55,15 +52,13 @@ import { AppStore } from '../../app.store';
 export class HeaderComponent implements OnInit {
   @ViewChild('menuBtn') menuBtnRef: ElementRef;
   @ViewChild('menuIcon') menuIconRef: ElementRef;
-  @observable showDropdownMenu = false;
+  showDropdownMenu = false;
 
-  @computed
-  get showTitle() {
-    return !this.appStore.isHeaderTransparent;
+  showTitle() {
+    return ;
   }
   constructor(private appStore: AppStore, private router: Router) {}
 
-  @action('toggle dropdown Menu')
   toggleDropdownMenu() {
     this.showDropdownMenu = !this.showDropdownMenu;
   }
@@ -76,9 +71,7 @@ export class HeaderComponent implements OnInit {
       ) {
         this.toggleDropdownMenu();
       } else {
-        runInAction(() => {
-          this.showDropdownMenu = false;
-        });
+        this.showDropdownMenu = false;
       }
     });
   }

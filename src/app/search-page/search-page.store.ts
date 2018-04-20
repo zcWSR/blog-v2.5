@@ -38,7 +38,6 @@ export class SearchPageStore {
         .subscribe((meta: IJsonReturn<IPost[]>) => {
           if (meta.ret) {
             if (meta.data.length) {
-              console.log(meta.data.length);
               // 假设一页显示5个, 当返回数list数量小于5时, 则可判断已经没有更多了
               if (meta.data.length === this.appStore.postListPageSize) {
                 this.loading = 0;
