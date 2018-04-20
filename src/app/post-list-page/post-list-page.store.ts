@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { observable, computed, action } from 'mobx-angular';
-import { IPost } from '../modules/post';
+import { IPost } from '../models/post';
 import { AppStore } from '../app.store';
 @Injectable()
 export class PostListPageStore {

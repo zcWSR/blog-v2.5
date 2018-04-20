@@ -4,7 +4,11 @@
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "es2015",
-    "types": []
+    "types": [],
+    "paths": {
+      "highlight.js": ["packages/highlight.pack.js"],
+      "moment": ["packages/moment.pack.js"]
+    }
   },
   "exclude": [
     "test.ts",

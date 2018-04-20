@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit {
   showTitle() {
     return ;
   }
-  constructor(private appStore: AppStore, private router: Router) {}
+  constructor(public appStore: AppStore, private router: Router) {}
 
   toggleDropdownMenu() {
     this.showDropdownMenu = !this.showDropdownMenu;

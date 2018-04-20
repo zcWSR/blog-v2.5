@@ -43,7 +43,6 @@ export class SearchComponent implements OnInit {
     this.route.url.subscribe(([type, value]) => {
       this.store.searchType = type.path;
       this.store.searchContent = value ? value.path : '';
-      console.log(this.store.searchContent);
       this.inputRef.nativeElement.value = this.store.searchContent;
 
       const optionsClone = [...this.options];

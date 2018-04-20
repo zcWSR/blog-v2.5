@@ -5,8 +5,8 @@ import { runInAction } from 'mobx';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { environment } from '../../../environments/environment';
-import { IJsonReturn } from '../../modules/json-return';
-import { IImg } from '../../modules/img';
+import { IJsonReturn } from '../../models/json-return';
+import { IImg } from '../../models/img';
 import { AppStore } from '../../app.store';
 
 @Injectable()

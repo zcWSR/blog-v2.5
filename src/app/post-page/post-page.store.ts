@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { observable, computed, action } from 'mobx-angular';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { IPost } from '../modules/post';
-import { IJsonReturn } from '../modules/json-return';
+import { IPost } from '../models/post';
+import { IJsonReturn } from '../models/json-return';
 import { environment } from '../../environments/environment';
 import { AppStore } from '../app.store';
 
@@ -18,7 +18,7 @@ export class PostPageStore {
   defaultPost: IPost = {
     id: '',
     title: '',
-    date: '',
+    createAt: '',
     section: '',
     rest: '',
     category: '',

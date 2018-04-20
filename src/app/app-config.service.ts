@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppStore } from './app.store';
 import { environment } from '../environments/environment';
-import { IJsonReturn } from './modules/json-return';
-import { IBaseConfig } from './modules/baseConfig';
+import { IJsonReturn } from './models/json-return';
+import { IBaseConfig } from './models/baseConfig';
 
 @Injectable()
 export class AppConfigSerivce {

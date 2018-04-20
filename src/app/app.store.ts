@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { observable, action } from 'mobx-angular';
-import { IImg } from './modules/img';
-import { IArticle } from './modules/article';
+import { IImg } from './models/img';
+import { IArticle } from './models/article';
 
 @Injectable()
 export class AppStore {

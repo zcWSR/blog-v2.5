@@ -4,10 +4,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { transition, style, trigger, animate, state, query, stagger } from '@angular/animations';
 
-import { IPost } from '../../modules/post';
+import { IPost } from '../../models/post';
 import { PostListPageStore } from '../post-list-page.store';
 import { environment } from '../../../environments/environment';
-import { IPostList } from '../../modules/post-list';
+import { IPostList } from '../../models/post-list';
 import { HostBinding } from '@angular/core';
 
 @Component({

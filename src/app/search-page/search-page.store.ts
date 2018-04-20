@@ -3,8 +3,8 @@ import { observable, computed, action } from 'mobx-angular';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
-import { IJsonReturn } from '../modules/json-return';
-import { IPost } from '../modules/post';
+import { IJsonReturn } from '../models/json-return';
+import { IPost } from '../models/post';
 import { AppStore } from '../app.store';
 
 @Injectable()
