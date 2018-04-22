@@ -4,7 +4,6 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { DisqusModule } from 'ngx-disqus';
 import { ArticlePageComponent } from './article-page/article-page.component';
-import { ArticleComponent } from './article/article.component';
 import { ArticlePageStore } from './article-page.store';
 import { CoreModule } from '../core/core.module';
 
@@ -21,8 +20,7 @@ import { CoreModule } from '../core/core.module';
     ArticlePageStore
   ],
   declarations: [
-    ArticlePageComponent,
-    ArticleComponent
+    ArticlePageComponent
   ],
   exports: [
     ArticlePageComponent
