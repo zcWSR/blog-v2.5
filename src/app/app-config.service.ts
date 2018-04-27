@@ -19,7 +19,8 @@ export class AppConfigSerivce {
           const data = meta.data;
           this.appStore.blogName = data.blogName;
           this.appStore.slogen = data.slogen;
-          this.appStore.hostBg = data.hostBg;
+          this.appStore.bgUrl = data.bgUrl;
+          this.appStore.bgColor = data.bgColor;
           this.appStore.postListPageSize = data.postListPageSize;
           this.appStore.articles = data.articles;
           console.log('config loaded...');

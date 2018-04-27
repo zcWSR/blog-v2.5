@@ -1,14 +1,21 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ElementRef, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AppStore } from '../../app.store';
-import { IImg } from '../../models/img';
 
 @Component({
   selector: 'app-small-jumbotron',
   template: `
   <div #jumbotron class="jumbotron small">
-    <div class="jumbotron-background grey">
-        <!-- <img [src]="bgUrl" (load)="bgLoadComplete()"> -->
-    </div>
+    <div
+      class="jumbotron-background front dark"
+      [class.vanish]="showBg"
+      [style.backgroundColor]="bgColor"
+    ></div>
+    <div
+      class="jumbotron-background dark"
+      [style.backgroundImage]="bgStyle"
+      [style.backgroundPosition]="showBg || 'center'"
+    ></div>
     <div class="post-title">
         <h1 class="title" *ngIf="title">{{ title }}</h1>
         <p class="date" *ngIf="date" >{{ date | dateX }}</p>
@@ -30,18 +37,23 @@ export class SmallJumbotronComponent implements OnInit, AfterViewInit, OnDestroy
   @Input() date;
   @Input() category;
   @Input() labels;
-  _bg: IImg;
-  @Input('bg')
-  get bg() {
+  @Input() bgColor;
+  _bg: string;
+  showBg = false;
+  bgStyle: any = '';
+  @Input('bgUrl')
+  get bgUrl() {
     return this._bg;
   }
-  set bg(b) {
+  set bgUrl(b) {
+    this.loadBg(b);
     this._bg = b;
   }
   @ViewChild('jumbotron') ref: ElementRef;
   io = new IntersectionObserver(([entry]) => this.cross(entry), { threshold: [0.000001] });
   constructor(
-    private appStore: AppStore
+    private appStore: AppStore,
+    private domSanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -61,6 +73,16 @@ export class SmallJumbotronComponent implements OnInit, AfterViewInit, OnDestroy
     } else {
       this.appStore.isHeaderTransparent = false;
     }
+  }
+
+  loadBg(bgUrl) {
+    this.showBg = false;
+    const bg = new Image();
+    bg.onload = () => {
+      this.bgStyle = this.domSanitizer.bypassSecurityTrustStyle(`url(${bg.src})`);
+      this.showBg = false;
+    };
+    bg.src = bgUrl;
   }
 
 }

@@ -1,5 +1,3 @@
-import { IImg } from './img';
-
 export interface IPost {
   id: string;
   title: string;
@@ -9,5 +7,6 @@ export interface IPost {
   rest: string;
   category: string;
   labels: string[];
-  bg?: IImg;
+  bgUrl?: string;
+  bgColor?: string;
 }

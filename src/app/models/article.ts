@@ -1,5 +1,3 @@
-import { IImg } from './img';
-
 export interface IArticle {
   id?: number;
   route: string;
@@ -9,6 +7,6 @@ export interface IArticle {
   url?: string;
   createAt?: string;
   updateAt?: string;
-  bg?: IImg;
-  bg_main_color?: string;
+  bgUrl?: string;
+  bgColor?: string;
 }

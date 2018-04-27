@@ -22,7 +22,9 @@ export class PostPageStore {
     section: '',
     rest: '',
     category: '',
-    labels: []
+    labels: [],
+    bgUrl: '',
+    bgColor: ''
   };
 
   @observable post: IPost = this.defaultPost;
@@ -60,10 +62,17 @@ export class PostPageStore {
       .subscribe((meta: IJsonReturn<IPost>) => {
         if (meta.ret) {
           this.post = meta.data;
+          this.reportView(this.post.id);
         } else {
         }
         this.loading = false;
       });
+  }
+
+  reportView(postId) {
+    const url = `${environment.api_host}/blog/posts/report/${postId}`;
+    this.http.jsonp(url, 'callback')
+      .subscribe(() => {}, err => {});
   }
 
 

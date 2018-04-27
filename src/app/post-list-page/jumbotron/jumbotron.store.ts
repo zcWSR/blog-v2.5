@@ -6,7 +6,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { environment } from '../../../environments/environment';
 import { IJsonReturn } from '../../models/json-return';
-import { IImg } from '../../models/img';
 import { AppStore } from '../../app.store';
 
 @Injectable()
@@ -28,6 +27,6 @@ export class JumbotronStore {
         this.showBg = true;
       });
     };
-    bg.src = this.appStore.hostBg.url;
+    bg.src = this.appStore.bgUrl;
   }
 }
