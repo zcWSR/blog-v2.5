@@ -13,6 +13,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { SmallJumbotronComponent } from './small-jumbotron/small-jumbotron.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToArrayPipe } from './to-array.pipe';
+import { ScriptHackComponent } from './script-hack/script-hack.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { ToArrayPipe } from './to-array.pipe';
     LoadingComponent,
     MarkdownComponent,
     SmallJumbotronComponent,
+    ScriptHackComponent,
     DateXPipe,
     WithKeyPipe,
     ToArrayPipe
@@ -41,6 +43,7 @@ import { ToArrayPipe } from './to-array.pipe';
     LoadingComponent,
     MarkdownComponent,
     SmallJumbotronComponent,
+    ScriptHackComponent,
     DateXPipe,
     WithKeyPipe,
     ToArrayPipe

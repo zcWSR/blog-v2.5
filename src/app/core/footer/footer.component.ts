@@ -3,13 +3,20 @@ import { AppStore } from '../../app.store';
 
 @Component({
   selector: 'app-footer',
-  templateUrl: './footer.component.html',
+  template: `
+  <footer class="footer-flat">
+    <div class="copyright">
+        <div class="container">
+            <a target="_blank" href="{{ appStore.footerLink }}">{{ appStore.footer }}</a>
+        </div>
+    </div>
+  </footer>`,
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
 
   constructor(
-    private appStore: AppStore
+    public appStore: AppStore
   ) { }
 
   ngOnInit() {

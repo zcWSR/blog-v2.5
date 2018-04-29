@@ -6,7 +6,8 @@ import {
   HostBinding,
   HostListener,
   ElementRef,
-  ViewChild
+  ViewChild,
+  Renderer2
 } from '@angular/core';
 import {
   transition,
@@ -35,11 +36,12 @@ import { action } from 'mobx-angular';
 })
 export class PostPageComponent implements OnInit, OnDestroy {
   @ViewChild('indexContainer') indexContainerRef: ElementRef;
+  @ViewChild('shareLinkContainer') shareLinkContainerRef: ElementRef;
   io = new IntersectionObserver(([entry]) => this.cross([entry]), {
     threshold: [0, 1],
     rootMargin: '-50px 0px -80% 0px'
   });
-  constructor(public store: PostPageStore, private route: ActivatedRoute) {
+  constructor(public store: PostPageStore, private route: ActivatedRoute, private renderer: Renderer2) {
     this.store.setDefault();
   }
 
@@ -100,4 +102,19 @@ export class PostPageComponent implements OnInit, OnDestroy {
       this.store.activeIndex(entry.target.id);
     }
   }
+
+  // loadShareLinkScript() {
+  //   console.log('load share script');
+  //   const container = this.shareLinkContainerRef.nativeElement;
+  //   const script1 = this.renderer.createElement('script');
+  //   script1.type = 'text/javascript';
+  //   script1.charset = 'urf-8';
+  //   script1.src = 'http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh';
+  //   const script2 = this.renderer.createElement('script');
+  //   script2.type = 'text/javascript';
+  //   script2.charset = 'urf-8';
+  //   script2.src = 'http://static.bshare.cn/b/bshareC0.js';
+  //   this.renderer.appendChild(this.renderer., script1);
+  //   this.renderer.appendChild(container, script2);
+  // }
 }

@@ -10,6 +10,7 @@ export class AppStore {
   // @observable hostBgMainColor = '';
   // @observable postListPageSize = 0;
   // @observable articals = [];
+  pageTitle = '';
   blogName = '';
   slogen = '';
   bgColor = '';
@@ -17,5 +18,12 @@ export class AppStore {
   hostBgMainColor = '';
   postListPageSize = 0;
   articles: IArticle[] = [];
+
+  weiboLink: string;
+  githubLink: string;
+  mailLink: string;
+  footer: string;
+  footerLink: string;
+
   @observable isHeaderTransparent = true;
 }
