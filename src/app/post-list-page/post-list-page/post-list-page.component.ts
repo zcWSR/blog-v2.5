@@ -20,10 +20,9 @@ export class PostListPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    document.title = this.appStore.pageTitle;
     this.route.children[0].params
-      .subscribe(params => {
-        document.title = this.appStore.pageTitle;
+    .subscribe(params => {
+        this.title.setTitle(this.appStore.pageTitle);
         this.store.curPage = +params.page || 1;
         if (this.store.curPage !== 1) {
           this.appStore.isHeaderTransparent = false;

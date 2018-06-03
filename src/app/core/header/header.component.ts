@@ -86,7 +86,7 @@ export class HeaderComponent implements OnInit {
   }
 
   backToHome() {
-    this.router.navigate(['/']);
+    this.router.navigateByUrl('/#top');
     window.location.hash = '#top';
   }
 }
