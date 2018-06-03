@@ -1,6 +1,9 @@
 <header class="fix-top" [class.transparent]="appStore.isHeaderTransparent">
     <div class="logo">
-        <img class="hide-on-small" src="avatar.jpg">
+        <div class="logo-icon hide-on-small" (click)="backToHome()">
+            <img src="{{appStore.topIconUrl}}">
+            <div class="icon-mask"><i class="fa fa-home"></i></div>
+        </div>
         <a *ngIf="!appStore.isHeaderTransparent" href="javascript:;" (click)="backToHome()" [@showHideTitle]>{{ appStore.blogName }}</a>
     </div>
     <div class="right">

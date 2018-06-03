@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild, Input, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, Input, AfterViewInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'app-script-hack',
@@ -14,13 +15,24 @@ export class ScriptHackComponent implements AfterViewInit {
     @Input()
     type: string;
 
+    @Input()
+    charSet: string;
+
     @ViewChild('script') script: ElementRef;
+
+    constructor(
+        @Inject(DOCUMENT) private document
+    ) {
+
+    }
 
     convertToScript() {
         const element = this.script.nativeElement;
-        const script = document.createElement('script');
-        script.type = this.type ? this.type : 'text/javascript';
+        const script = this.document.createElement('script');
+        script.type = this.type || 'text/javascript';
+        script.charset = this.charSet || 'utf-8';
         if (this.src) {
+            script.async = true;
             script.src = this.src;
         }
         if (element.innerHTML) {

@@ -16,6 +16,7 @@ import {
   animate,
   state
 } from '@angular/animations';
+import { Title } from '@angular/platform-browser';
 import { PostPageStore } from '../post-page.store';
 import { ActivatedRoute } from '@angular/router';
 import { runInAction } from 'mobx';
@@ -36,19 +37,21 @@ import { action } from 'mobx-angular';
 })
 export class PostPageComponent implements OnInit, OnDestroy {
   @ViewChild('indexContainer') indexContainerRef: ElementRef;
-  @ViewChild('shareLinkContainer') shareLinkContainerRef: ElementRef;
   io = new IntersectionObserver(([entry]) => this.cross([entry]), {
     threshold: [0, 1],
     rootMargin: '-50px 0px -80% 0px'
   });
-  constructor(public store: PostPageStore, private route: ActivatedRoute, private renderer: Renderer2) {
+  constructor(public store: PostPageStore, private route: ActivatedRoute, private renderer: Renderer2, private title: Title) {
     this.store.setDefault();
   }
 
   ngOnInit() {
     this.route.params.subscribe(({ postId }) => {
+      this.title.setTitle('loading...');
       if (postId) {
         this.store.getPost(postId);
+      } else {
+        this.title.setTitle('文章不存在');
       }
     });
   }

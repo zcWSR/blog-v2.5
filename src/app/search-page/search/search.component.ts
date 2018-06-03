@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AppStore } from '../../app.store';
 import { Router } from '@angular/router';
@@ -25,7 +26,7 @@ import { SelectComponent } from '../select/select.component';
 export class SearchComponent implements OnInit {
   debonce;
   options: any[] = [
-    { name: '文章', value: 'post', active: false },
+    { name: '文章', value: 'title', active: false },
     { name: '类别', value: 'category', active: false },
     { name: '标签', value: 'label', active: false }
   ];
@@ -35,7 +36,8 @@ export class SearchComponent implements OnInit {
     private appStore: AppStore,
     private store: SearchPageStore,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private title: Title
   ) { }
 
   ngOnInit() {
@@ -44,7 +46,7 @@ export class SearchComponent implements OnInit {
       this.store.searchType = type.path;
       this.store.searchContent = value ? value.path : '';
       this.inputRef.nativeElement.value = this.store.searchContent;
-
+      this.title.setTitle(`搜索 ${this.store.searchType}${this.store.searchContent ? ` '${this.store.searchContent}'` : ''}`);
       const optionsClone = [...this.options];
       optionsClone.forEach(item => item.active = false);
       const index = this.options.findIndex(item => item.value === type.path);

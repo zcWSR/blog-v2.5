@@ -29,6 +29,7 @@ export class AppConfigSerivce {
           this.appStore.mailLink = data.mailLink;
           this.appStore.footer = data.footer;
           this.appStore.footerLink = data.footerLink;
+          this.appStore.topIconUrl = data.topIconUrl;
           console.log('config loaded...');
           resolve(true);
         } else {

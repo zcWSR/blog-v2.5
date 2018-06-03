@@ -24,6 +24,7 @@ export class AppStore {
   mailLink: string;
   footer: string;
   footerLink: string;
+  topIconUrl: string;
 
   @observable isHeaderTransparent = true;
 }

@@ -5,6 +5,8 @@
   [date]="store.post.createAt"
   [category]="store.post.category"
   [labels]="store.post.labels"
+  [bgColor]="store.post.bgColor"
+  [bgUrl]="store.post.bgUrl"
 ></app-small-jumbotron>
 <div class="white-bg" *mobxAutorun>
   <div class="container main-content">
@@ -27,24 +29,11 @@
             </li>
         </ul>
     </div>
-    <div class="row">
-      <div *ngIf="!store.loading" class="col s24 m20 l18 push-l3 push-m2 push-s0" [@enterLeave]="store.loading ? 'initial' : 'ready'">
-          <div class="bshare-custom icon-medium center">
-            <a title="分享到" href="http://www.bShare.cn/" id="bshare-shareto" class="bshare-more">分享到</a>
-            <a title="分享到QQ空间" class="bshare-qzone"></a>
-            <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
-            <a title="分享到人人网" class="bshare-renren"></a>
-            <a title="分享到腾讯微博" class="bshare-qqmb"></a>
-            <a title="分享到网易微博" class="bshare-neteasemb"></a>
-            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
-            <span class="BSHARE_COUNT bshare-share-count">0</span>
-          </div>
-          <app-script-hack type="text/javascript" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></app-script-hack>
-          <app-script-hack type="text/javascript" src="http://static.bshare.cn/b/bshareC0.js"></app-script-hack>
-      </div>
-    </div>
   </div>
   <div class="container">
+    <div class="row">
+      <app-share></app-share>
+    </div>
     <div class="row">
       <div class="col s24 m20 l18 push-l3 push-m2 push-s0">
         <disqus

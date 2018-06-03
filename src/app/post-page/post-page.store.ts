@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Title } from '@angular/platform-browser';
 import { observable, computed, action } from 'mobx-angular';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { IPost } from '../models/post';
@@ -12,7 +12,8 @@ export class PostPageStore {
   constructor(
     private domSanitizer: DomSanitizer,
     private http: HttpClient,
-    private appStore: AppStore
+    private appStore: AppStore,
+    private title: Title
   ) {}
 
   defaultPost: IPost = {
@@ -62,6 +63,7 @@ export class PostPageStore {
       .subscribe((meta: IJsonReturn<IPost>) => {
         if (meta.ret) {
           this.post = meta.data;
+          this.title.setTitle(`${this.post.title} - ${this.appStore.pageTitle}`);
           this.reportView(this.post.id);
         } else {
         }

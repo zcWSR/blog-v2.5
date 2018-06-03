@@ -2,12 +2,14 @@
   *mobxAutorun
   [style.flex]="'0 0 auto'"
   [title]="store.article.title"
+  [bgColor]="store.article.bgColor"
+  [bgUrl]="store.article.bgUrl"
 ></app-small-jumbotron>
 <div class="white-bg" *mobxAutorun>
   <div class="container main-content">
     <div class="row post-list" [@enterLeave]="store.loading ? 'initial' : 'ready'">
       <div class="col s24 m20 l18 push-l3 push-m2 push-s0 cards-container">
-        <app-markdown [content]="store.allContent" [withHeaderList]="true" (headerListLoad)="headerListLoad($event)"></app-markdown>
+        <app-markdown [content]="store.article.content" [withHeaderList]="true"></app-markdown>
       </div>
     </div>
     <div #indexContainer class="index hide-on-small" [class.affix]="store.affixIndexList">
@@ -30,9 +32,9 @@
       <div class="col s24 m20 l18 push-l3 push-m2 push-s0">
         <disqus
           *ngIf="!store.loading"
-          [identifier]="store.post.id"
+          [identifier]="'article-' + store.article.id"
           [url]="store.getPageUrl"
-          [title]="store.post.title"
+          [title]="store.article.title"
         ></disqus>
       </div>
     </div>

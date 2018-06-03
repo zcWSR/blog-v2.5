@@ -9,9 +9,9 @@ const routes: Routes = [
     path: 'search',
     component: SearchPageComponent,
     children: [
-      { path: '', redirectTo: 'post/', pathMatch: 'full' },
-      { path: 'post', component: SearchComponent },
-      { path: 'post/:content', component: SearchComponent },
+      { path: '', redirectTo: 'title/', pathMatch: 'full' },
+      { path: 'title', component: SearchComponent },
+      { path: 'title/:content', component: SearchComponent },
       { path: 'category', component: SearchComponent },
       { path: 'category/:content', component: SearchComponent },
       { path: 'label', component: SearchComponent },

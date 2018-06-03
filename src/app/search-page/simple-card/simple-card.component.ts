@@ -12,7 +12,7 @@ import {
   <div class="card-header">
       <p><a
         routerLink="{{ '/post/' + post.id }}"
-        [innerHTML]="keywordType === 'post' ? highlight(post.title) : post.title"
+        [innerHTML]="keywordType === 'title' ? highlight(post.title) : post.title"
       ></a></p>
   </div>
   <div class="card-info with-border">
@@ -50,6 +50,7 @@ export class SimpleCardComponent implements OnInit {
 
   highlight(meta: string) {
     const keyIndex = meta.toLocaleLowerCase().indexOf(this.keyword);
+    console.log(keyIndex);
     if (keyIndex === -1) {
       return meta;
     }

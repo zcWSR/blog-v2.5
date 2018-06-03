@@ -20,7 +20,7 @@ const routes: Routes = [
     data: { animation: 'post' }
   },
   {
-    path: 'article/:shortName',
+    path: 'article/:routeName',
     component: ArticlePageComponent,
     data: { animation: 'article' }
   },

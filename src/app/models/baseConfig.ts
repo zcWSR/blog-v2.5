@@ -15,4 +15,5 @@ export interface IBaseConfig {
   mailLink: string;
   footer: string;
   footerLink: string;
+  topIconUrl: string;
 }
