@@ -1,15 +1,15 @@
 <header class="fix-top" [class.transparent]="appStore.isHeaderTransparent">
     <div class="logo">
-        <div class="logo-icon hide-on-small" (click)="backToHome()">
+        <div class="logo-icon hide-on-small">
             <img src="{{appStore.topIconUrl}}">
-            <div class="icon-mask"><i class="fa fa-home"></i></div>
+            <a [routerLink]="['/']" class="icon-mask"><i class="fa fa-home"></i></a>
         </div>
-        <a *ngIf="!appStore.isHeaderTransparent" href="javascript:;" (click)="backToHome()" [@showHideTitle]>{{ appStore.blogName }}</a>
+        <a *ngIf="!appStore.isHeaderTransparent" href="javascript:;" [routerLink]="['/']" [@showHideTitle]>{{ appStore.blogName }}</a>
     </div>
     <div class="right">
         <div class="search">
             <form (submit)="onSearch(searchForm, $event)" #searchForm>
-            <input id="search" type="text" placeholder="search..." >
+            <input id="search" type="text" autocomplete="off" placeholder="search..." >
             </form>
         </div>
         <div class="header-menu hide-on-small">
