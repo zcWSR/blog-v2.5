@@ -3,13 +3,6 @@ import { trigger, animate, style, group, animateChild, query, stagger, transitio
 
 export const routerTransition = trigger('routerTransition', [
   transition('* <=> *', [
-    // query(':enter, :leave', style({ opacity: 1 }), { optional: true }),
-    // query(':enter', [
-    //   style({ opacity: .5 }),
-    //   animate('.5s ease-in-out', style({ opacity: 1 }))
-    //   ],
-    //   { optional: true }
-    // ),
     query(':leave', [
       style({ opacity: 1 }),
       animate('.5s ease-in-out', style({ opacity: 0 }))
