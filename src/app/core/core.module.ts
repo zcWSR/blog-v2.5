@@ -14,7 +14,6 @@ import { SmallJumbotronComponent } from './small-jumbotron/small-jumbotron.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToArrayPipe } from './to-array.pipe';
 import { ScriptHackComponent } from './script-hack/script-hack.component';
-import { ShareComponent } from './share/share.component';
 
 @NgModule({
   imports: [
@@ -33,7 +32,6 @@ import { ShareComponent } from './share/share.component';
     MarkdownComponent,
     SmallJumbotronComponent,
     ScriptHackComponent,
-    ShareComponent,
     DateXPipe,
     WithKeyPipe,
     ToArrayPipe
@@ -46,7 +44,6 @@ import { ShareComponent } from './share/share.component';
     MarkdownComponent,
     SmallJumbotronComponent,
     ScriptHackComponent,
-    ShareComponent,
     DateXPipe,
     WithKeyPipe,
     ToArrayPipe
