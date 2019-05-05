@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  api_host: 'http://localhost:2333'
+  api_host: 'http://api.zcwsr.com'
 };

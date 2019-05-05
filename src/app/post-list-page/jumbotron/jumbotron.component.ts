@@ -9,6 +9,7 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-jumbotron',
   templateUrl: './jumbotron.component.html',
+  styleUrls: ['./jumbotron.component.scss'],
   providers: [
     JumbotronStore
   ]
