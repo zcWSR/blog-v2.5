@@ -10,8 +10,6 @@ import {
 import { Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MarkdownService } from './markdown.service';
-import { AfterViewChecked } from '@angular/core/src/metadata/lifecycle_hooks';
-import { observable, computed } from 'mobx-angular';
 
 @Component({
   selector: 'app-markdown',
@@ -20,18 +18,18 @@ import { observable, computed } from 'mobx-angular';
   providers: [MarkdownService]
 })
 export class MarkdownComponent implements OnInit {
-  @ViewChild('ref') ref: ElementRef;
-  _content = '';
+  @ViewChild('ref') ref?: ElementRef;
+  contentInner = '';
   innerHTML: any = '';
 
   @Output() headerListLoad = new EventEmitter<{}>();
   @Input() withHeaderList = false;
   @Input('content')
-  get content() {
-    return this._content;
+  get content(): string {
+    return this.contentInner;
   }
   set content(c) {
-    this._content = c;
+    this.contentInner = c;
     const content = this.mdService.markdown(c);
     this.innerHTML = this.domSanitizer.bypassSecurityTrustHtml(content || '');
     if (this.withHeaderList && this.mdService.headerList.length) {
@@ -42,7 +40,7 @@ export class MarkdownComponent implements OnInit {
   constructor(
     private mdService: MarkdownService,
     private domSanitizer: DomSanitizer
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit(): void { }
 }

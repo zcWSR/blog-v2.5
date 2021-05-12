@@ -12,7 +12,6 @@ import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading.component';
 import { SmallJumbotronComponent } from './small-jumbotron/small-jumbotron.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToArrayPipe } from './to-array.pipe';
 import { ScriptHackComponent } from './script-hack/script-hack.component';
 
 @NgModule({
@@ -34,7 +33,6 @@ import { ScriptHackComponent } from './script-hack/script-hack.component';
     ScriptHackComponent,
     DateXPipe,
     WithKeyPipe,
-    ToArrayPipe
   ],
   exports: [
     HeaderComponent,
@@ -46,7 +44,6 @@ import { ScriptHackComponent } from './script-hack/script-hack.component';
     ScriptHackComponent,
     DateXPipe,
     WithKeyPipe,
-    ToArrayPipe
   ]
 })
-export class CoreModule {}
+export class CoreModule { }

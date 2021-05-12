@@ -2,15 +2,20 @@ import { Injectable } from '@angular/core';
 import * as Marked from 'marked';
 import * as hljs from 'highlight.js';
 
+interface HeaderTag {
+  id: string;
+  active: boolean;
+  text: string;
+}
+
 @Injectable()
 export class MarkdownService {
   i = 0;
-  headerList = [];
+  headerList: HeaderTag[] = [];
   constructor() {
     Marked.setOptions({
       renderer: this.getRenderer(),
       gfm: true,
-      tables: true,
       breaks: false,
       pedantic: false,
       sanitize: false,
@@ -20,7 +25,7 @@ export class MarkdownService {
     });
   }
 
-  getRenderer() {
+  getRenderer(): Marked.Renderer {
     const renderer = new Marked.Renderer();
     renderer.heading = (text: string, level: number) => {
       const id = `header-${this.i}`;
@@ -38,7 +43,7 @@ export class MarkdownService {
     return renderer;
   }
 
-  markdown(value: string) {
+  markdown(value: string): string {
     return Marked(value);
   }
 }

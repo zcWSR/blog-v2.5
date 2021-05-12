@@ -29,7 +29,7 @@ import {
   `
 })
 export class LoadingComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit(): void { }
 }

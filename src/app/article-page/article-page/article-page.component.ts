@@ -34,19 +34,17 @@ export class ArticlePageComponent implements OnInit {
     this.appStore.isHeaderTransparent = false;
   }
 
-  ngOnInit() {
-    this.route.params.subscribe(({ routeName }) => {
-      this.title.setTitle('loading...');
-      if (routeName) {
-        const article = this.appStore.articles.find(a => a.route === routeName);
-        if (article) {
-          this.store.fetchArticle(article.id);
-        } else {
-          this.title.setTitle('文章不存在');
-        }
+  ngOnInit(): void {
+    const routeName = this.route.snapshot.paramMap.get('routeName');
+    if (routeName) {
+      const article = this.appStore.articles.find(a => a.route === routeName);
+      if (article) {
+        this.store.fetchArticle(article.id);
       } else {
         this.title.setTitle('文章不存在');
       }
-    });
+    } else {
+      this.title.setTitle('文章不存在');
+    }
   }
 }

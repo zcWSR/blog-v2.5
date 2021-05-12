@@ -19,7 +19,5 @@ export class FooterComponent implements OnInit {
     public appStore: AppStore
   ) { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit(): void { }
 }

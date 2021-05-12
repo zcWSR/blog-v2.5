@@ -7,13 +7,14 @@ import {
   ElementRef,
   Input,
   ChangeDetectorRef,
-} from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
-import { AppStore } from "../../app.store";
-import { Observable } from "rxjs";
+  ɵSafeStyle,
+} from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AppStore } from '../../app.store';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: "app-small-jumbotron",
+  selector: 'app-small-jumbotron',
   template: ` <div #jumbotron class="jumbotron small">
     <div
       class="jumbotron-background front dark"
@@ -43,25 +44,25 @@ import { Observable } from "rxjs";
 })
 export class SmallJumbotronComponent
   implements OnInit, AfterViewInit, OnDestroy {
-  @Input() title;
-  @Input() date;
-  @Input() category;
-  @Input() labels;
-  @Input() bgColor;
-  _bg: string;
+  @Input() title = '';
+  @Input() date = '';
+  @Input() category = '';
+  @Input() labels = '';
+  @Input() bgColor = '';
+  bgUrlInner = '';
   showBg = false;
-  bgStyle: any = "";
-  @Input("bgUrl")
-  get bgUrl() {
-    return this._bg;
+  bgStyle?: ɵSafeStyle;
+  @Input('bgUrl')
+  get bgUrl(): string {
+    return this.bgUrlInner;
   }
   set bgUrl(b) {
-    this._bg = b;
+    this.bgUrlInner = b;
     if (b) {
       this.loadBg(b);
     }
   }
-  @ViewChild("jumbotron") ref: ElementRef;
+  @ViewChild('jumbotron') ref?: ElementRef;
   io = new IntersectionObserver(([entry]) => this.cross(entry), {
     threshold: [0.000001],
   });
@@ -69,19 +70,19 @@ export class SmallJumbotronComponent
     private appStore: AppStore,
     private domSanitizer: DomSanitizer,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit(): void { }
 
-  ngAfterViewInit() {
-    this.io.observe(this.ref.nativeElement);
+  ngAfterViewInit(): void {
+    this.io.observe(this.ref?.nativeElement);
   }
 
-  ngOnDestroy() {
-    this.io.unobserve(this.ref.nativeElement);
+  ngOnDestroy(): void {
+    this.io.unobserve(this.ref?.nativeElement);
   }
 
-  cross(entry) {
+  cross(entry: IntersectionObserverEntry): void {
     if (entry.intersectionRatio > 0) {
       this.appStore.isHeaderTransparent = true;
     } else {
@@ -89,16 +90,16 @@ export class SmallJumbotronComponent
     }
   }
 
-  loadBg(bgUrl) {
+  loadBg(bgUrl: string): void {
     this.showBg = false;
-    const bg = document.createElement("img");
-    Observable.fromEvent(bg, "load").subscribe(() => {
+    const bg = document.createElement('img');
+    bg.onload = () => {
       this.bgStyle = this.domSanitizer.bypassSecurityTrustStyle(
         `url("${bgUrl}")`
       );
       this.showBg = true;
       this.cdr.detectChanges();
-    });
+    };
     bg.src = bgUrl;
   }
 }

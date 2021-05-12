@@ -50,24 +50,22 @@ import { AppStore } from '../../app.store';
   ]
 })
 export class HeaderComponent implements OnInit {
-  @ViewChild('menuBtn') menuBtnRef: ElementRef;
-  @ViewChild('menuIcon') menuIconRef: ElementRef;
+  @ViewChild('menuBtn') menuBtnRef?: ElementRef;
+  @ViewChild('menuIcon') menuIconRef?: ElementRef;
   showDropdownMenu = false;
+  searchValue = '';
 
-  showTitle() {
-    return ;
-  }
-  constructor(public appStore: AppStore, private router: Router) {}
+  constructor(public appStore: AppStore, private router: Router) { }
 
-  toggleDropdownMenu() {
+  toggleDropdownMenu(): void {
     this.showDropdownMenu = !this.showDropdownMenu;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     window.addEventListener('click', e => {
       if (
-        e.target === this.menuIconRef.nativeElement ||
-        e.target === this.menuBtnRef.nativeElement
+        e.target === this.menuIconRef?.nativeElement ||
+        e.target === this.menuBtnRef?.nativeElement
       ) {
         this.toggleDropdownMenu();
       } else {
@@ -76,12 +74,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  onSearch(form, event) {
-    event.preventDefault();
-    const searchValue = form.search.value;
-    if (searchValue) {
-      this.router.navigate(['search', 'title', searchValue]);
+  onSearch(e: Event): void {
+    e.preventDefault();
+    if (this.searchValue) {
+      this.router.navigate(['search', 'title', this.searchValue]);
     }
-    form.search.value = '';
+    this.searchValue = '';
   }
 }

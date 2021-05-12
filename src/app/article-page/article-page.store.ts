@@ -13,7 +13,7 @@ export class ArticlePageStore {
     private http: HttpClient,
     private appStore: AppStore,
     private title: Title
-  ) {}
+  ) { }
 
   defaultArticle: IArticle = {
     id: 0,
@@ -30,17 +30,16 @@ export class ArticlePageStore {
   @observable article: IArticle = this.defaultArticle;
 
   @computed
-  get pageUrl() {
+  get pageUrl(): string {
     return `${location.protocol}//${location.host}${location.pathname}`;
   }
 
   @action('fetch article')
-  fetchArticle(articleId) {
+  fetchArticle(articleId: number): void {
     this.loading = true;
-    const url = `${environment.api_host}/blog/article/${articleId}`;
-    this.http
-      .jsonp(url, 'callback')
-      .subscribe((meta: IJsonReturn<IArticle>) => {
+    const url = `/api/blog/article/${articleId}`;
+    this.http.get<IJsonReturn<IArticle>>(url).
+      subscribe((meta) => {
         if (meta.ret) {
           this.article = meta.data;
           this.title.setTitle(
@@ -53,8 +52,7 @@ export class ArticlePageStore {
       });
   }
 
-  reportView(articleId) {
-    const url = `${environment.api_host}/blog/article/report/${articleId}`;
-    this.http.jsonp(url, 'callback').subscribe(() => {}, err => {});
+  reportView(articleId: number): void {
+    this.http.get(`/api/article/report/${articleId}`);
   }
 }

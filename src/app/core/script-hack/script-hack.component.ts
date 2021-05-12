@@ -8,29 +8,24 @@ import { DOCUMENT } from '@angular/common';
   </div>`
 })
 export class ScriptHackComponent implements AfterViewInit {
+    @Input()
+    src = '';
 
     @Input()
-    src: string;
+    type = '';
 
-    @Input()
-    type: string;
-
-    @Input()
-    charSet: string;
-
-    @ViewChild('script') script: ElementRef;
+    @ViewChild('script') script?: ElementRef;
 
     constructor(
-        @Inject(DOCUMENT) private document
+        @Inject(DOCUMENT) private document: Document
     ) {
 
     }
 
-    convertToScript() {
-        const element = this.script.nativeElement;
+    convertToScript(): void {
+        const element = this.script?.nativeElement;
         const script = this.document.createElement('script');
         script.type = this.type || 'text/javascript';
-        script.charset = this.charSet || 'utf-8';
         if (this.src) {
             script.async = true;
             script.src = this.src;
@@ -42,7 +37,7 @@ export class ScriptHackComponent implements AfterViewInit {
         parent.parentElement.replaceChild(script, parent);
     }
 
-    ngAfterViewInit() {
+    ngAfterViewInit(): void {
         this.convertToScript();
     }
 }

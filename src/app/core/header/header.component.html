@@ -1,36 +1,50 @@
 <header class="fix-top" [class.transparent]="appStore.isHeaderTransparent">
-    <div class="logo">
-        <div class="logo-icon hide-on-small">
-            <img src="{{appStore.topIconUrl}}">
-            <a [routerLink]="['/']" class="icon-mask"><i class="fa fa-home"></i></a>
-        </div>
-        <a *ngIf="!appStore.isHeaderTransparent" href="javascript:;" [routerLink]="['/']" [@showHideTitle]>{{ appStore.blogName }}</a>
+  <div class="logo">
+    <div class="logo-icon hide-on-small">
+      <img src="{{ appStore.topIconUrl }}" />
+      <a [routerLink]="['/']" class="icon-mask"><i class="fa fa-home"></i></a>
     </div>
-    <div class="right">
-        <div class="search">
-            <form (submit)="onSearch(searchForm, $event)" #searchForm>
-            <input id="search" type="text" autocomplete="off" placeholder="search..." >
-            </form>
-        </div>
-        <div class="header-menu hide-on-small">
-            <a
-                class="menu-item"
-                *ngFor="let article of appStore.articles"
-                routerLink="{{ '/article/' + article.route }}"
-            >{{ article.shortName }}</a>
-        </div>
-        <div class="header-dropdown-menu show-on-small">
-            <div #menuBtn class="menu-icon"><i #menuIcon class="fa fa-bars"></i></div>
-            <div class="menu-container">
-                <ng-container *ngIf="showDropdownMenu">
-                    <a
-                        class="menu-item"
-                        *ngFor="let article of appStore.articles"
-                        routerLink="{{ '/article/' + article.route }}"
-                        [@toggleMenu]
-                    >{{ article.shortName }}</a>
-                </ng-container>
-            </div>
-        </div>
+    <a
+      *ngIf="!appStore.isHeaderTransparent"
+      href="javascript:;"
+      [routerLink]="['/']"
+      [@showHideTitle]
+      >{{ appStore.blogName }}</a
+    >
+  </div>
+  <div class="right">
+    <div class="search">
+      <form (submit)="onSearch(searchForm, $event)">
+        <input
+          id="search"
+          type="text"
+          autocomplete="off"
+          placeholder="search..."
+          [(ngModel)]="searchValue"
+        />
+      </form>
     </div>
+    <div class="header-menu hide-on-small">
+      <a
+        class="menu-item"
+        *ngFor="let article of appStore.articles"
+        routerLink="{{ '/article/' + article.route }}"
+        >{{ article.shortName }}</a
+      >
+    </div>
+    <div class="header-dropdown-menu show-on-small">
+      <div #menuBtn class="menu-icon"><i #menuIcon class="fa fa-bars"></i></div>
+      <div class="menu-container">
+        <ng-container *ngIf="showDropdownMenu">
+          <a
+            class="menu-item"
+            *ngFor="let article of appStore.articles"
+            routerLink="{{ '/article/' + article.route }}"
+            [@toggleMenu]
+            >{{ article.shortName }}</a
+          >
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </header>

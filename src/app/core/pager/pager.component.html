@@ -1,20 +1,22 @@
 <div class="pager center" [style.display]="totalCount ? 'block' : 'none'">
-    <div class="pager-item go-prev" [class.disabled]="!canGoPrev()">
-        <a
-            routerLink="{{ getLink(curPage - 1) }}"
-            routerLinkActive="canGoPrev()"
-        ><i class="fa fa-angle-left"></i></a>
-    </div>
-    <div class="pager-item" *ngFor="let pageItem of pagerItems | toArray" [class.selected]="pageItem.value">
-        <a routerLink="{{ getLink(pageItem.key) }}">
-        <!-- <a (click)="goPage(pageItem.key)"> -->
-            {{ pageItem.key }}
-        </a>
-    </div>
-    <div class="pager-item go-next" [class.disabled]="!canGoNext()">
-        <a
-            routerLink="{{ getLink(curPage + 1) }}"
-            routerLinkActive="canGoNext()"
-        ><i class="fa fa-angle-right"></i></a>
-    </div>
+  <div class="pager-item go-prev" [class.disabled]="!canGoPrev()">
+    <a routerLink="{{ getLink(curPage - 1) }}" routerLinkActive="canGoPrev()"
+      ><i class="fa fa-angle-left"></i
+    ></a>
+  </div>
+  <div
+    class="pager-item"
+    *ngFor="let pageItem of pagerItems | keyvalue"
+    [class.selected]="pageItem.value"
+  >
+    <a routerLink="{{ getLink(pageItem.key) }}">
+      <!-- <a (click)="goPage(pageItem.key)"> -->
+      {{ pageItem.key }}
+    </a>
+  </div>
+  <div class="pager-item go-next" [class.disabled]="!canGoNext()">
+    <a routerLink="{{ getLink(curPage + 1) }}" routerLinkActive="canGoNext()"
+      ><i class="fa fa-angle-right"></i
+    ></a>
+  </div>
 </div>

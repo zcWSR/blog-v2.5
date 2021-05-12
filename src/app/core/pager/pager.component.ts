@@ -18,11 +18,11 @@ export class PagerComponent implements OnInit, OnChanges {
   @Input() pageSize = 1;
   pagerItems: { [key: number]: boolean } = {};
 
-  isShowPager() {
+  isShowPager(): number {
     return this.totalCount;
   }
 
-  getPagerItems() {
+  getPagerItems(): void {
     const items: { [key: number]: boolean } = {};
     const itemCount = 5;
     const pageCount = Math.ceil(this.totalCount / this.pageSize);
@@ -54,39 +54,39 @@ export class PagerComponent implements OnInit, OnChanges {
     this.pagerItems = items;
   }
 
-  canGoPrev() {
+  canGoPrev(): boolean {
     return this.curPage !== 1;
   }
 
-  canGoNext() {
+  canGoNext(): boolean {
     return this.curPage !== Math.ceil(this.totalCount / this.pageSize);
   }
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getPagerItems();
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.getPagerItems();
   }
 
-  getLink(page) {
+  getLink(page: number): string {
     return `${this.linkPrefix}/${page}`;
   }
 
-  goPage(page) {
+  goPage(page: number): void {
     this.curPage = page;
     this.getPagerItems();
   }
 
-  goPrev() {
+  goPrev(): void {
     this.curPage--;
     this.getPagerItems();
   }
 
-  goNext() {
+  goNext(): void {
     this.curPage++;
     this.getPagerItems();
   }
