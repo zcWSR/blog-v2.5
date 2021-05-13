@@ -72,7 +72,7 @@ export class PagerComponent implements OnInit, OnChanges {
     this.getPagerItems();
   }
 
-  getLink(page: number): string {
+  getLink(page: number | string): string {
     return `${this.linkPrefix}/${page}`;
   }
 

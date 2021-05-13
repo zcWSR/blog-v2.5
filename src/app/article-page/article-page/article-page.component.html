@@ -18,14 +18,14 @@
         ></app-markdown>
       </div>
     </div>
-    <div
+    <!-- <div
       #indexContainer
       class="index hide-on-small"
       [class.affix]="store.affixIndexList"
-    >
+      >
       <ul>
         <li
-          *ngFor="let indexInfo of store.headerList"
+          *ngFor="let indexInfo of store.catalog"
           #indexEle
           [class.active]="setIndexStatus(indexInfo.active, indexEle)"
           (click)="scrollToHeader(indexInfo.id, 30, indexEle)"
@@ -35,7 +35,7 @@
           </a>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
   <div class="container">
     <div class="row">
@@ -43,7 +43,7 @@
         <disqus
           *ngIf="!store.loading"
           [identifier]="'article-' + store.article.id"
-          [url]="store.getPageUrl"
+          [url]="store.pageUrl"
           [title]="store.article.title"
         ></disqus>
       </div>

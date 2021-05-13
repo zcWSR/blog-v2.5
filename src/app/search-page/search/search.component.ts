@@ -7,9 +7,9 @@ import { SearchPageStore } from '../search-page.store';
 import { SelectComponent } from '../select/select.component';
 
 type option = {
-  name: string;
-  value: string;
-  active: boolean;
+  name?: string;
+  value?: string;
+  active?: boolean;
 };
 
 @Component({
@@ -30,7 +30,7 @@ type option = {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchComponent implements OnInit {
-  debounce?: NodeJS.Timeout;
+  debounce?: number;
   options: option[] = [
     { name: '文章', value: 'title', active: false },
     { name: '类别', value: 'category', active: false },
@@ -78,6 +78,6 @@ export class SearchComponent implements OnInit {
       if (this.store.searchContent) {
         this.router.navigate(['search', this.store.searchType, this.store.searchContent]);
       }
-    }, 500);
+    }, 500) as any;
   }
 }

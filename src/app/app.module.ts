@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,7 @@ export function appConfigServiceFactory(service: AppConfigService): () => Promis
     HttpClientModule,
     HttpClientJsonpModule,
     CoreModule,
+    FormsModule,
     PostListPageModule,
     PostPageModule,
     SearchPageModule,

@@ -74,6 +74,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  handleSearchValueChange(e: Event): void {
+    const target = e.target as HTMLInputElement;
+    this.searchValue = target.value;
+  }
+
   onSearch(e: Event): void {
     e.preventDefault();
     if (this.searchValue) {

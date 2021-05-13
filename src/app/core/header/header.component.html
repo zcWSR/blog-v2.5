@@ -14,13 +14,13 @@
   </div>
   <div class="right">
     <div class="search">
-      <form (submit)="onSearch(searchForm, $event)">
+      <form (submit)="onSearch($event)">
         <input
           id="search"
           type="text"
           autocomplete="off"
           placeholder="search..."
-          [(ngModel)]="searchValue"
+          (change)="handleSearchValueChange($event)"
         />
       </form>
     </div>

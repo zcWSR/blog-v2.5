@@ -6,7 +6,7 @@ export interface IArticle {
   content: string;
   url?: string;
   createAt: string;
-  updateAt?: string;
-  bgUrl?: string;
-  bgColor?: string;
+  updateAt: string;
+  bgUrl: string;
+  bgColor: string;
 }

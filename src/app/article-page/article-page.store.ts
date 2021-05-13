@@ -21,6 +21,7 @@ export class ArticlePageStore {
     shortName: '',
     title: 'Loading...',
     createAt: '',
+    updateAt: '',
     content: '',
     bgUrl: '',
     bgColor: ''
