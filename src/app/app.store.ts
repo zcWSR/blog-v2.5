@@ -20,12 +20,12 @@ export class AppStore implements IBaseConfig {
   postListPageSize = 0;
   articles: IArticle[] = [];
 
-  weiboLink: string = '';
-  githubLink: string = '';
-  mailLink: string = '';
-  footer: string = '';
-  footerLink: string = '';
-  topIconUrl: string = '';
+  weiboLink = '';
+  githubLink = '';
+  mailLink = '';
+  footer = '';
+  footerLink = '';
+  topIconUrl = '';
 
   @observable isHeaderTransparent = true;
 }

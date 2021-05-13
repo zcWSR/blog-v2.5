@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { trigger, animate, style, group, animateChild, query, stagger, transition } from '@angular/animations';
+import { trigger, animate, style, query, transition } from '@angular/animations';
+import { RouterOutlet } from '@angular/router';
 
 export const routerTransition = trigger('routerTransition', [
   transition('* <=> *', [
     query(':leave', [
       style({ opacity: 1 }),
       animate('.5s ease-in-out', style({ opacity: 0 }))
-      ],
+    ],
       { optional: true }
     ),
   ])
@@ -26,7 +27,7 @@ export const routerTransition = trigger('routerTransition', [
 })
 export class AppComponent {
   title = 'app';
-  getState(outlet) {
+  getState(outlet: RouterOutlet): any {
     return outlet.activatedRouteData.animation;
 
   }

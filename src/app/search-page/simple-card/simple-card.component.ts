@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { IPost } from "../../models/post";
+import { Component, Input } from '@angular/core';
+import { IPost } from '../../models/post';
 
 @Component({
-  selector: "app-simple-card",
+  selector: 'app-simple-card',
   template: `
     <div class="card-simple" [style.marginTop]="'2em'">
       <div class="card-header">
@@ -50,25 +50,23 @@ import { IPost } from "../../models/post";
       </div>
     </div>
   `,
-  styleUrls: ["./simple-card.component.scss"],
+  styleUrls: ['./simple-card.component.scss'],
 })
-export class SimpleCardComponent implements OnInit {
-  @Input() keywordType: string = '';
-  @Input() keyword: string = '';
-  @Input() post: IPost = {};
-  constructor() {}
+export class SimpleCardComponent {
+  @Input() keywordType = '';
+  @Input() keyword = '';
+  @Input() post?: IPost;
+  constructor() { }
 
-  ngOnInit() {}
-
-  highlight(meta: string) {
+  highlight(meta: string): string {
     const keyIndex = meta.toLocaleLowerCase().indexOf(this.keyword);
     console.log(keyIndex);
     if (keyIndex === -1) {
       return meta;
     }
-    const splited = meta.split("");
-    splited.splice(keyIndex, 0, `<p class="highlight">`);
-    splited.splice(keyIndex + this.keyword.length + 1, 0, "</p>");
-    return splited.join("");
+    const split = meta.split('');
+    split.splice(keyIndex, 0, `<p class="highlight">`);
+    split.splice(keyIndex + this.keyword.length + 1, 0, '</p>');
+    return split.join('');
   }
 }

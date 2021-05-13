@@ -6,6 +6,12 @@ import { Router } from '@angular/router';
 import { SearchPageStore } from '../search-page.store';
 import { SelectComponent } from '../select/select.component';
 
+type option = {
+  name: string;
+  value: string;
+  active: boolean;
+};
+
 @Component({
   selector: 'app-search',
   template: `
@@ -24,14 +30,14 @@ import { SelectComponent } from '../select/select.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchComponent implements OnInit {
-  debonce;
-  options: any[] = [
+  debounce?: NodeJS.Timeout;
+  options: option[] = [
     { name: '文章', value: 'title', active: false },
     { name: '类别', value: 'category', active: false },
     { name: '标签', value: 'label', active: false }
   ];
-  @ViewChild('inputRef') inputRef: ElementRef;
-  @ViewChild('selectRef') selectRef: SelectComponent;
+  @ViewChild('inputRef') inputRef?: ElementRef;
+  @ViewChild('selectRef') selectRef?: SelectComponent;
   constructor(
     private appStore: AppStore,
     private store: SearchPageStore,
@@ -40,12 +46,14 @@ export class SearchComponent implements OnInit {
     private title: Title
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.appStore.isHeaderTransparent = false;
     this.route.url.subscribe(([type, value]) => {
       this.store.searchType = type.path;
       this.store.searchContent = value ? value.path : '';
-      this.inputRef.nativeElement.value = this.store.searchContent;
+      if (this.inputRef) {
+        this.inputRef.nativeElement.value = this.store.searchContent;
+      }
       this.title.setTitle(`搜索 ${this.store.searchType}${this.store.searchContent ? ` '${this.store.searchContent}'` : ''}`);
       const optionsClone = [...this.options];
       optionsClone.forEach(item => item.active = false);
@@ -56,16 +64,16 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  changeSearchType(type) {
+  changeSearchType(type: option): void {
     this.store.searchType = type.value;
     this.router.navigate(['search', type.value]);
   }
 
-  inputChange(event) {
-    if (this.debonce) {
-      clearTimeout(this.debonce);
+  inputChange(event: any): void {
+    if (this.debounce) {
+      clearTimeout(this.debounce);
     }
-    this.debonce = setTimeout(() => {
+    this.debounce = setTimeout(() => {
       this.store.searchContent = event.target.value.trim();
       if (this.store.searchContent) {
         this.router.navigate(['search', this.store.searchType, this.store.searchContent]);

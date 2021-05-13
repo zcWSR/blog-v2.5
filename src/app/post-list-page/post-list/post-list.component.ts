@@ -4,11 +4,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { transition, style, trigger, animate, state, query, stagger } from '@angular/animations';
 
-import { IPost } from '../../models/post';
 import { PostListPageStore } from '../post-list-page.store';
 import { environment } from '../../../environments/environment';
 import { IPostList } from '../../models/post-list';
 import { HostBinding } from '@angular/core';
+import { IJsonReturn } from 'src/app/models/json-return';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,14 +21,14 @@ import { HostBinding } from '@angular/core';
   `,
   styleUrls: ['./post-list.component.scss'],
   animations: [
-  trigger('showHideList', [
-    transition(':enter', [
-      query('.card-flat', [
-        style({ opacity: 0 }),
-        animate('1s ease-out', style({ opacity: 1 }))
-      ], { optional: true })
+    trigger('showHideList', [
+      transition(':enter', [
+        query('.card-flat', [
+          style({ opacity: 0 }),
+          animate('1s ease-out', style({ opacity: 1 }))
+        ], { optional: true })
+      ])
     ])
-  ])
   ]
 })
 export class PostListComponent implements OnInit {
@@ -38,30 +38,26 @@ export class PostListComponent implements OnInit {
     private http: HttpClient
   ) { }
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      const page = params.page || 1;
-      let search = new HttpParams();
-      search = search
-        .set('page', page)
+  ngOnInit(): void {
+    this.route.params.subscribe(({ page }) => {
+      page = page || '1';
+      const params = new HttpParams().set('page', page)
         .set('pageSize', this.store.pageSize + '');
-      const url = `${environment.api_host}/blog/posts?${search.toString()}`;
       this.store.loading = true;
-      this.http.jsonp(url, 'callback')
-        .subscribe((meta: { data?: IPostList, errmsg?: string, errcode: number, ret: boolean }) => {
+      this.http.get<IJsonReturn<IPostList>>('/api/posts', { params })
+        .subscribe((meta) => {
           if (meta.ret) {
             this.store.postList = [];
             this.store.postList = meta.data.list;
             this.store.pageSize = meta.data.pageSize;
             this.store.totalCount = meta.data.totalCount;
-            if (params.page) {
-              if (+params.page !== 1) {
+            if (page) {
+              if (+page !== 1) {
                 window.location.hash = 'top';
               } else {
-                  window.location.hash = 'main-content-top';
-                }
+                window.location.hash = 'main-content-top';
+              }
             }
-          } else {
           }
           this.store.loading = false;
         });

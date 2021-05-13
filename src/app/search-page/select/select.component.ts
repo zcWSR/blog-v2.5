@@ -59,9 +59,9 @@ import { SelectStore } from './select.store';
   ]
 })
 export class SelectComponent implements OnInit {
-  @ViewChild('ref') ref: ElementRef;
+  @ViewChild('ref') ref?: ElementRef;
   @Input('options')
-  get options() {
+  get options(): any[] {
     return this.store.options;
   }
   set options(o) {
@@ -72,15 +72,15 @@ export class SelectComponent implements OnInit {
     private store: SelectStore
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     window.addEventListener('click', e => {
-      if (e.target !== this.ref.nativeElement) {
-       this.store.show = false;
+      if (e.target !== this.ref?.nativeElement) {
+        this.store.show = false;
       }
     });
   }
 
-  select(index, event?) {
+  select(index: number, event: Event): void {
     if (event) {
       event.cancelBubble = true;
     }

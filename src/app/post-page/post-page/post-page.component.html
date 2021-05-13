@@ -10,24 +10,35 @@
 ></app-small-jumbotron>
 <div class="white-bg" *mobxAutorun>
   <div class="container main-content">
-    <div class="row post-list" [@enterLeave]="store.loading ? 'initial' : 'ready'">
+    <div
+      class="row post-list"
+      [@enterLeave]="store.loading ? 'initial' : 'ready'"
+    >
       <div class="col s24 m20 l18 push-l3 push-m2 push-s0 cards-container">
-        <app-markdown [content]="store.allContent" [withHeaderList]="true" (headerListLoad)="headerListLoad($event)"></app-markdown>
+        <app-markdown
+          [content]="store.allContent"
+          [withHeaderList]="true"
+          (headerListLoad)="headerListLoad($event)"
+        ></app-markdown>
       </div>
     </div>
-    <div #indexContainer class="index hide-on-small" [class.affix]="store.affixIndexList">
-        <ul>
-            <li
-              *ngFor="let indexInfo of store.headerList"
-              #indexEle
-              [class.active]="setIndexStatus(indexInfo.active, indexEle)"
-              (click)="scrollToHeader(indexInfo.id, 30, indexEle)"
-            >
-              <a href="javascript:void(0);">
-                <span>{{ indexInfo.text }}</span>
-              </a>
-            </li>
-        </ul>
+    <div
+      #indexContainer
+      class="index hide-on-small"
+      [class.affix]="store.affixIndexList"
+    >
+      <ul>
+        <li
+          *ngFor="let indexInfo of store.headerList"
+          #indexEle
+          [class.active]="setIndexStatus(indexInfo.active, indexEle)"
+          (click)="scrollToHeader(indexInfo.id, 30, indexEle)"
+        >
+          <a href="javascript:void(0);">
+            <span>{{ indexInfo.text }}</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="container">
@@ -42,4 +53,4 @@
       </div>
     </div>
   </div>
-</div> 
+</div>

@@ -19,9 +19,9 @@ export class PostListPageComponent implements OnInit {
     private title: Title
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.children[0].params
-    .subscribe(params => {
+      .subscribe(params => {
         this.title.setTitle(this.appStore.pageTitle);
         this.store.curPage = +params.page || 1;
         if (this.store.curPage !== 1) {

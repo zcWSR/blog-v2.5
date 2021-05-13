@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as Marked from 'marked';
 import * as hljs from 'highlight.js';
+import { Catalog } from 'src/app/models/catalog';
 
 interface HeaderTag {
   id: string;
@@ -11,7 +12,7 @@ interface HeaderTag {
 @Injectable()
 export class MarkdownService {
   i = 0;
-  headerList: HeaderTag[] = [];
+  catalog: Catalog = [];
   constructor() {
     Marked.setOptions({
       renderer: this.getRenderer(),
@@ -29,7 +30,7 @@ export class MarkdownService {
     const renderer = new Marked.Renderer();
     renderer.heading = (text: string, level: number) => {
       const id = `header-${this.i}`;
-      this.headerList.push({ id, active: false, text });
+      this.catalog.push({ id, active: false, text });
       this.i++;
       return `<h${level} class="heading" id="${id}">${text}</h${level}>`;
     };

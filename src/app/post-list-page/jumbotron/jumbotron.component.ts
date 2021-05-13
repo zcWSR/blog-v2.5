@@ -1,9 +1,8 @@
-import { Component, ChangeDetectionStrategy, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 import { AppStore } from '../../app.store';
 import { JumbotronStore } from './jumbotron.store';
 import { Input } from '@angular/core';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,27 +13,27 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
     JumbotronStore
   ]
 })
-export class JumbotronComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('jumbotron') ref: ElementRef;
+export class JumbotronComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('jumbotron') ref?: ElementRef;
   io = new IntersectionObserver(([entry]) => this.cross(entry), { threshold: [0.000001] });
   constructor(
     private appStore: AppStore,
     private store: JumbotronStore,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.store.loadBg();
   }
 
-  ngAfterViewInit() {
-    this.io.observe(this.ref.nativeElement);
+  ngAfterViewInit(): void {
+    this.io.observe(this.ref?.nativeElement);
   }
 
-  ngOnDestroy() {
-    this.io.unobserve(this.ref.nativeElement);
+  ngOnDestroy(): void {
+    this.io.unobserve(this.ref?.nativeElement);
   }
 
-  cross(entry) {
+  cross(entry: IntersectionObserverEntry): void {
     if (entry.intersectionRatio > 0) {
       // 可见
       this.appStore.isHeaderTransparent = true;

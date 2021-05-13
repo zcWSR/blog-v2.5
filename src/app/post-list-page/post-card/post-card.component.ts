@@ -8,10 +8,10 @@ import { IPost } from '../../models/post';
   styleUrls: ['./post-card.component.scss']
 })
 export class PostCardComponent implements OnInit {
-  @Input() post: IPost;
+  @Input() post?: IPost;
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

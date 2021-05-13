@@ -5,7 +5,7 @@ import { IJsonReturn } from './models/json-return';
 import { IBaseConfig } from './models/baseConfig';
 
 @Injectable()
-export class AppConfigSerivce {
+export class AppConfigService {
   error?: string;
   constructor(private http: HttpClient, private appStore: AppStore) { }
 

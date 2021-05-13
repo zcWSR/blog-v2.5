@@ -7,29 +7,29 @@ export class PostListPageStore {
   @observable curPage = 1;
   @observable totalCount = 0;
   @observable pageSize = this.appStore.postListPageSize;
-  @observable postList: IPost[] = null;
+  @observable postList: IPost[] = [];
   @observable loading = false;
 
-  constructor(private appStore: AppStore) {}
+  constructor(private appStore: AppStore) { }
 
   @computed
-  get showJumb() {
+  get showJumb(): boolean {
     return this.curPage === 1;
   }
 
   @computed
-  get showList() {
+  get showList(): boolean {
     return !this.loading;
   }
 
   @computed
-  get hasList() {
+  get hasList(): boolean {
     if (this.postList === null) { return true; }
-    return this.postList.length;
+    return !!this.postList.length;
   }
 
   @action('click change page button')
-  changePage(page) {
+  changePage(page: number): void {
     this.curPage = page;
   }
 }

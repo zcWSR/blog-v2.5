@@ -1,20 +1,18 @@
-import { Injectable } from "@angular/core";
-import { observable, computed, action } from "mobx-angular";
-import { runInAction } from "mobx";
-import { DomSanitizer } from "@angular/platform-browser";
+import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { observable, action } from 'mobx-angular';
+import { runInAction } from 'mobx';
 
-import { environment } from "../../../environments/environment";
-import { IJsonReturn } from "../../models/json-return";
-import { AppStore } from "../../app.store";
+import { AppStore } from '../../app.store';
 
 @Injectable()
 export class JumbotronStore {
-  constructor(private domSanitizer: DomSanitizer, private appStore: AppStore) {}
+  constructor(private domSanitizer: DomSanitizer, private appStore: AppStore) { }
   @observable showBg = false;
-  @observable baseBgStyle: any = "";
+  @observable baseBgStyle: any = '';
 
-  @action("loadBg")
-  loadBg() {
+  @action('loadBg')
+  loadBg(): void {
     this.showBg = false;
     const bg = new Image();
     bg.onload = () => {

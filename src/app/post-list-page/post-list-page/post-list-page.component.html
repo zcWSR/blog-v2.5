@@ -2,14 +2,14 @@
   <app-jumbotron *ngIf="store.showJumb"></app-jumbotron>
   <div class="white-bg">
     <a id="main-content-top"></a>
-    <div class="container main-content" >
+    <div class="container main-content">
       <div class="row post-list">
         <div class="col s24 m20 l18 push-l3 push-m2 push-s0 cards-container">
           <router-outlet></router-outlet>
         </div>
       </div>
       <div class="row pager">
-        <div class="col s24" >
+        <div class="col s24">
           <app-pager
             [curPage]="store.curPage"
             [totalCount]="store.totalCount"

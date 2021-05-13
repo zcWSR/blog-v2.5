@@ -12,11 +12,11 @@ import { SearchPageModule } from './search-page/search-page.module';
 import { ArticlePageModule } from './article-page/article-page.module';
 
 import { AppStore } from './app.store';
-import { AppConfigSerivce } from './app-config.service';
+import { AppConfigService } from './app-config.service';
 import { APP_INITIALIZER } from '@angular/core';
 
 
-export function appConfigServiceFactory(service: AppConfigSerivce) {
+export function appConfigServiceFactory(service: AppConfigService): () => Promise<boolean> {
   return () => service.loadAppConfig();
 }
 @NgModule({
@@ -37,11 +37,11 @@ export function appConfigServiceFactory(service: AppConfigSerivce) {
   ],
   providers: [
     AppStore,
-    AppConfigSerivce,
+    AppConfigService,
     {
       provide: APP_INITIALIZER,
       useFactory: appConfigServiceFactory,
-      deps: [AppConfigSerivce],
+      deps: [AppConfigService],
       multi: true
     }
   ],

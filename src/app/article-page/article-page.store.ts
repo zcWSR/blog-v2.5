@@ -53,6 +53,6 @@ export class ArticlePageStore {
   }
 
   reportView(articleId: number): void {
-    this.http.get(`/api/article/report/${articleId}`);
+    this.http.get(`/api/article/report/${articleId}`).subscribe();
   }
 }

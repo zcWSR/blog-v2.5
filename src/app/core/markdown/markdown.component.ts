@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  ChangeDetectionStrategy,
   EventEmitter,
   Output,
   ViewChild,
@@ -9,6 +8,7 @@ import {
 } from '@angular/core';
 import { Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Catalog } from 'src/app/models/catalog';
 import { MarkdownService } from './markdown.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class MarkdownComponent implements OnInit {
   contentInner = '';
   innerHTML: any = '';
 
-  @Output() headerListLoad = new EventEmitter<{}>();
+  @Output() headerListLoad = new EventEmitter<Catalog>();
   @Input() withHeaderList = false;
   @Input('content')
   get content(): string {
@@ -32,8 +32,8 @@ export class MarkdownComponent implements OnInit {
     this.contentInner = c;
     const content = this.mdService.markdown(c);
     this.innerHTML = this.domSanitizer.bypassSecurityTrustHtml(content || '');
-    if (this.withHeaderList && this.mdService.headerList.length) {
-      this.headerListLoad.emit(this.mdService.headerList);
+    if (this.withHeaderList && this.mdService.catalog.length) {
+      this.headerListLoad.emit(this.mdService.catalog);
     }
   }
 
